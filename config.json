@@ -1,0 +1,58 @@
+{
+  "source_folder": "/home/jaimz/Documents/testfolder",
+  "destination_folder": "/home/jaimz/Documents/AutoSorted",
+  "rules": {
+    "Videos": [
+      ".mp4",
+      ".mkv",
+      ".mov",
+      ".avi"
+    ],
+    "Images": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".webp",
+      ".bmp"
+    ],
+    "Documents": [
+      ".pdf",
+      ".docx",
+      ".txt",
+      ".xlsx",
+      ".pptx",
+      ".doc",
+      ".xml",
+      ".ppt"
+    ],
+    "Audio": [
+      ".mp3",
+      ".wav",
+      ".aac",
+      ".flac",
+      ".ogg"
+    ],
+    "Archives": [
+      ".zip",
+      ".rar",
+      ".iso",
+      ".7z",
+      ".tar",
+      ".gz"
+    ],
+    "Others": []
+  },
+  "exceptions": [
+    ".crdownload",
+    ".part",
+    ".tmp",
+    ".temp",
+    ".fdmdownload"
+  ],
+  "wait_before_copy": 5,
+  "verify_delay": 2, 
+  "mode": "fast",
+  "merge_duplicates": false
+  
+}
