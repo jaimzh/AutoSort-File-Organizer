@@ -20,3 +20,20 @@
 🛡️ Safely moved: jQBSbYp56o79TfuvfmxwMse_dbJBLPcgFDW-QRJHd0U (Copy).webp → Images
 🛡️ Safely moved: jQBSbYp56o79TfuvfmxwMse_dbJBLPcgFDW-QRJHd0U (Copy).webp → Images
 🛡️ Safely moved: jQBSbYp56o79TfuvfmxwMse_dbJBLPcgFDW-QRJHd0U (Copy 2).webp → Images
+⚡ Fast-moved: file.txt → Documents
+⚡ Fast-moved: what.txt → Documents
+⚡ Fast-moved: another.mp4 → Videos
+⚡ Fast-moved: file_A.pdf → Documents
+⚡ Fast-moved: file_B.docx → Documents
+⚡ Fast-moved: file_C.jpg → Images
+⚡ Fast-moved: file_D.png → Images
+⚡ Fast-moved: file_E.mp4 → Videos
+⚡ Fast-moved: file_F.mp3 → Audio
+⚡ Fast-moved: file_G.zip → Archives
+🛡️ Safely moved: file_A.pdf → Documents
+🛡️ Safely moved: file_B.docx → Documents
+🛡️ Safely moved: file_C.jpg → Images
+🛡️ Safely moved: file_D.png → Images
+🛡️ Safely moved: file_E.mp4 → Videos
+🛡️ Safely moved: file_F.mp3 → Audio
+🛡️ Safely moved: file_G.zip → Archives

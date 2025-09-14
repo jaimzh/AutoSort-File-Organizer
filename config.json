@@ -52,7 +52,7 @@
   ],
   "wait_before_copy": 5,
   "verify_delay": 2, 
-  "mode": "fast",
+  "mode": "safe",
   "merge_duplicates": false
   
 }

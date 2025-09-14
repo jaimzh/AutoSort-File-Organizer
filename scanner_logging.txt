@@ -1,0 +1,41 @@
+⚡ Fast-moved: photo.png → Images
+⚡ Fast-moved: song.mp3 → Audio
+⚡ Fast-moved: image.jpg → Images
+⚡ Fast-moved: archive.zip → Archives
+⚡ Fast-moved: report.docx → Documents
+⚡ Fast-moved: vacation_video.mp4 → Videos
+⚡ Fast-moved: invoice.pdf → Documents
+✅ Scan complete.
+⚡ Fast-moved: photo.png → Images
+⚡ Fast-moved: track.wav → Audio
+⚡ Fast-moved: song.mp3 → Audio
+⚡ Fast-moved: image.jpg → Images
+⚡ Fast-moved: archive.zip → Archives
+⚡ Fast-moved: slide.pptx → Documents
+⚡ Fast-moved: report.docx → Documents
+⚡ Fast-moved: notes.txt → Documents
+⚡ Fast-moved: vacation_video.mp4 → Videos
+⚡ Fast-moved: invoice.pdf → Documents
+⚡ Fast-moved: backup.rar → Archives
+✅ Scan complete.
+⚡ Fast-moved: photo.png → Images
+⚡ Fast-moved: track.wav → Audio
+⚡ Fast-moved: song.mp3 → Audio
+⚡ Fast-moved: image.jpg → Images
+⚡ Fast-moved: archive.zip → Archives
+⚡ Fast-moved: slide.pptx → Documents
+⚡ Fast-moved: report.docx → Documents
+⚡ Fast-moved: notes.txt → Documents
+⚡ Fast-moved: vacation_video.mp4 → Videos
+⚡ Fast-moved: invoice.pdf → Documents
+⚡ Fast-moved: backup.rar → Archives
+✅ Scan complete.
+⚡ Fast-moved: resume.docx → Documents
+⚡ Fast-moved: soundtrack.flac → Audio
+⚡ Fast-moved: holiday.mov → Videos
+⚡ Fast-moved: family_photo.jpeg → Images
+⚡ Fast-moved: budget.xlsx → Documents
+⚡ Fast-moved: compressed.7z → Archives
+⚡ Fast-moved: profile.png → Images
+⚡ Fast-moved: draft.xml → Documents
+✅ Scan complete.

@@ -8,6 +8,7 @@ from watchdog.events import FileSystemEventHandler
 from autosort.core.config import ConfigManager
 from autosort.core.utils import get_category_for_extension, safe_move, fast_move
 from autosort.core.logger import Logger
+from autosort.services.counter import lifetime_counter_update
 
 
 class FileHandler(FileSystemEventHandler):
@@ -64,6 +65,8 @@ class FileHandler(FileSystemEventHandler):
 
         print(msg)
         self.logger.log(msg)
+        lifetime_counter_update(category, self.rules)
+
 
 
 def start_monitoring():

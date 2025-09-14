@@ -1,9 +1,13 @@
 # autosort/services/scanner.py
 
+
 import os
 import time
 from autosort.core.config import ConfigManager
 from autosort.core.utils import fast_move, get_category_for_extension, safe_move
+from autosort.core.logger import Logger
+from autosort.services.counter import lifetime_counter_update
+
 
 
 
@@ -17,6 +21,8 @@ def scan_and_sort():
     wait_time = config.get("wait_before_copy", 5)
     verify_delay = config.get("verify_delay", 2)
     merge_duplicates = config.get("merge_duplicates", True)
+    logger = Logger("scanner_logging.txt")  # ✅ log file
+
 
     if not os.path.exists(source):
         print(f"❌ Source folder does not exist: {source}")
@@ -48,6 +54,7 @@ def scan_and_sort():
         mode = config.get("mode", "safe")
         if mode == "fast":
             fast_move(file_path, dest_folder, merge_duplicates=merge_duplicates)
+            msg = f"⚡ Fast-moved: {filename} → {category}"
         else: 
             safe_move(
             src_path=file_path,
@@ -57,9 +64,15 @@ def scan_and_sort():
             verify_delay=verify_delay
             
         )
+            msg = f"⚡ Fast-moved: {filename} → {category}"
+        print(msg)
+        logger.log(msg)
+        lifetime_counter_update(category, rules)
 
 
     print("✅ Scan complete.")
+    logger.log("✅ Scan complete.")
+    
 
 
 if __name__ == "__main__":
