@@ -1,0 +1,56 @@
+{
+  "source_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
+  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
+  "rules": {
+    "Videos": [
+      ".mp4",
+      ".mkv",
+      ".mov",
+      ".avi"
+    ],
+    "Images": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".webp",
+      ".bmp"
+    ],
+    "Documents": [
+      ".docx",
+      ".pdf"
+    ],
+    "Audio": [
+      ".mp3",
+      ".wav",
+      ".aac",
+      ".flac",
+      ".ogg"
+    ],
+    "Archives": [
+      ".zip",
+      ".rar",
+      ".iso",
+      ".7z",
+      ".tar",
+      ".gz"
+    ],
+    "Others": [],
+    "Subtitles": [
+      ".srt"
+    ]
+  },
+  "exceptions": [
+    ".crdownload",
+    ".part",
+    ".tmp",
+    ".temp",
+    ".fdmdownload",
+    "okay",
+    "now"
+  ],
+  "wait_before_copy": 1,
+  "verify_delay": 2,
+  "mode": "safe",
+  "merge_duplicates": false
+}
