@@ -45,12 +45,10 @@
     ".part",
     ".tmp",
     ".temp",
-    ".fdmdownload",
-    "okay",
-    "now"
+    ".fdmdownload"
   ],
   "wait_before_copy": 1,
   "verify_delay": 2,
-  "mode": "safe",
+  "mode": "fast",
   "merge_duplicates": false
 }

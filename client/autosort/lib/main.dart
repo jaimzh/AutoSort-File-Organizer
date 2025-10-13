@@ -45,13 +45,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'AutoSort',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      home: const MainLayout(),
+    return Consumer<ThemeProvider>(
+      builder: (context, theme, child) {
+        return MaterialApp(
+          title: 'AutoSort',
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          home: const MainLayout(),
+        );
+      },
     );
   }
 }

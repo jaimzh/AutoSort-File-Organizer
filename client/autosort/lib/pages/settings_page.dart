@@ -265,16 +265,14 @@ class ThemeSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
-      builder: (context, ThemeProvider, child) {
+      builder: (context, theme, child) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Dark Mode'),
             Switch(
-              value: false,
-              onChanged: (value) {
-                // placeholder: do nothing for now
-              },
+              value: theme.isDarkMode,
+              onChanged: (_) => theme.toggleTheme(),
             ),
           ],
         );

@@ -2,15 +2,24 @@ import 'package:autosort/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 class AppColors {
-  static const Color pageBackground = Color(0xFFFCFCFC);
+  static late Color pageBackground;
+
+  // initialize once
+  static void loadTheme({required bool isDark}) {
+    if (isDark) {
+      pageBackground = const Color.fromARGB(255, 0, 0, 0); // dark background
+    } else {
+      pageBackground = const Color(0xFFFCFCFC); // light background
+    }
+  }
+
   static const Color primaryBackground = Color(0xFFF5F5F5); // Light gray
   static const Color secondaryBackground = Color(0xFFE0E0E0);
   // static const Color greyBackground = Color(0xFFE0E0E0);
 
   // text color
+  
   static const Color primaryText = Color(0xFF212121); // Dark gray
   static const Color secondaryText = Color(0xFF757575);
 
@@ -48,12 +57,6 @@ class AppColors {
   static const Color buttonHover = Color.fromARGB(255, 20, 20, 20);
   static const Color divider = Color(0xFFBDBDBD);
 }
-
-
-
-
-
-
 
 //---------------------------------------------------------------
 // class AppColors {
@@ -100,38 +103,6 @@ class AppColors {
 //   static const Color buttonHover = Color.fromARGB(255, 20, 20, 20);
 //   static const Color divider = Color(0xFFBDBDBD);
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Light theme
 final ThemeData lightTheme = ThemeData(

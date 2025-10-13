@@ -61,7 +61,7 @@ class _AddExceptionDialogState extends State<AddExceptionDialog> {
         borderRadius: BorderRadiusGeometry.circular(10),
       ),
       title: Text(
-        "Add New Rule",
+        "Add New Exception",
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       content: Form(
