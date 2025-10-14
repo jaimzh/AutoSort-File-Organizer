@@ -118,12 +118,20 @@ class LinksAndSupport extends StatelessWidget {
               CustomButton(
                 text: 'Website',
                 icon: LucideIcons.externalLink,
-                onPressed: () {},
+                backgroundColor: Colors.transparent,
+                textColor: AppColors.primaryText,
+                hoverColor: const Color.fromARGB(19, 215, 215, 215),
+
+                onPressed: () async {},
               ),
               CustomButton(
                 text: 'Contact Support',
                 icon: LucideIcons.mail,
-                onPressed: () {},
+                backgroundColor: Colors.transparent,
+                textColor: AppColors.primaryText,
+                hoverColor: const Color.fromARGB(19, 215, 215, 215),
+
+                onPressed: () async {},
               ),
             ],
           ),
