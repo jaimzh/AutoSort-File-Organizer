@@ -6,7 +6,7 @@ class AppColors {
   static late Color pageBackground;
   static late Color primaryText;
   static late Color secondaryText;
-  static late Color pill; 
+  static late Color pill;
 
   //card colors
   static late Color cardBackground;
@@ -32,7 +32,8 @@ class AppColors {
       primaryText = Colors.white;
       secondaryText = const Color(0xFFBDBDBD);
 
-      cardBackground = const Color(0xFF0a0a0a); // dark card
+      //🔥alright so you might need to change the card background for this cuz rn it is kind of transparent
+      cardBackground = const Color.fromARGB(0, 10, 10, 10); // dark card
       cardBorder = const Color.fromARGB(80, 255, 255, 255);
       cardShadow = const Color.fromARGB(59, 0, 0, 0);
 
@@ -44,7 +45,7 @@ class AppColors {
       iconColor = Colors.white;
       buttonBackground = Colors.white;
       buttonText = Colors.black;
-      buttonHover = const Color(0xFFE0E0E0);
+      buttonHover = const Color.fromARGB(255, 231, 231, 231);
       divider = const Color(0xFF424242);
       pill = const Color.fromARGB(255, 22, 22, 22);
     } else {
@@ -68,7 +69,6 @@ class AppColors {
       divider = const Color(0xFFBDBDBD);
 
       pill = Colors.grey.shade200;
-      
     }
   }
 

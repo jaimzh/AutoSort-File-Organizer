@@ -245,6 +245,28 @@ def clear_logs_endpoint():
 def get_counts():
     return get_lifetime_counts()
 
+
+from fastapi import HTTPException
+
+@app.get("/config/dark_mode")
+def get_dark_mode():
+    try:
+        value = autosort.config.get("dark_mode", False)
+        return {"dark_mode": value}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.patch("/config/dark_mode")
+def update_dark_mode(value: bool):
+    try:
+        autosort.config.set("dark_mode", value)
+        return {"message": "Dark mode updated", "dark_mode": value}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
 app.get("")
 
 if __name__ == "__main__":

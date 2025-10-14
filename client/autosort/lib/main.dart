@@ -1,4 +1,5 @@
 import 'package:autosort/providers/theme_provider.dart';
+import 'package:autosort/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
@@ -31,6 +32,18 @@ Future<void> main() async {
     appWindow.maxSize = const Size(1400, 900); // Maximum size
     appWindow.alignment = Alignment.center; // Start centered
   });
+//THIS IS JUST TO ENSURE THAT THE COLORS GET PICKED FROM THE BE BEFORE IT LOADS 
+  // Load dark mode from backend or default
+  bool isDark = false;
+  try {
+    final serverMode = await ApiService.getDarkMode();
+    if (serverMode != null) isDark = serverMode;
+  } catch (e) {
+    // fail silently if backend not reachable
+  }
+
+  // Initialize theme colors
+  AppColors.loadTheme(isDark: isDark);
 
   runApp(
     ChangeNotifierProvider(

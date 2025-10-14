@@ -16,13 +16,6 @@ class ApiService {
     }
   }
 
-
-
-
-
-
-
-
   // ===== CONFIG =====
   static Future<Map<String, dynamic>?> getConfig() async {
     final response = await http.get(Uri.parse("$baseUrl/config"));
@@ -34,43 +27,42 @@ class ApiService {
     }
   }
 
+  static Future<Map<String, List<String>>?> getExtensions() async {
+    try {
+      // Get the full config
+      final response = await http.get(Uri.parse("$baseUrl/config"));
 
-static Future<Map<String, List<String>>?> getExtensions() async {
-  try {
-    // Get the full config
-    final response = await http.get(Uri.parse("$baseUrl/config"));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> config = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> config = jsonDecode(response.body);
+        // Extract the "rules" section which contains extension mappings
+        if (config.containsKey("rules")) {
+          final Map<String, dynamic> rules = config["rules"];
 
-      // Extract the "rules" section which contains extension mappings
-      if (config.containsKey("rules")) {
-        final Map<String, dynamic> rules = config["rules"];
-        
-        // Convert all values to List<String>
-        final Map<String, List<String>> extensions = rules.map(
-          (key, value) => MapEntry(key, List<String>.from(value)),
-        );
+          // Convert all values to List<String>
+          final Map<String, List<String>> extensions = rules.map(
+            (key, value) => MapEntry(key, List<String>.from(value)),
+          );
 
-        print("✅ Extensions fetched successfully: $extensions");
-        return extensions;
+          print("✅ Extensions fetched successfully: $extensions");
+          return extensions;
+        } else {
+          print("⚠️ No 'rules' key found in config.json");
+          return null;
+        }
       } else {
-        print("⚠️ No 'rules' key found in config.json");
+        print(
+          "❌ Error fetching config: ${response.statusCode} ${response.body}",
+        );
         return null;
       }
-    } else {
-      print("❌ Error fetching config: ${response.statusCode} ${response.body}");
+    } catch (e) {
+      print("⚠️ Exception while fetching extensions: $e");
       return null;
     }
-  } catch (e) {
-    print("⚠️ Exception while fetching extensions: $e");
-    return null;
   }
-}
 
-
-
-static Future<Map<String, dynamic>?> resetDefaults() async {
+  static Future<Map<String, dynamic>?> resetDefaults() async {
     try {
       final response = await http.put(
         Uri.parse("$baseUrl/config/reset_defaults"),
@@ -82,7 +74,9 @@ static Future<Map<String, dynamic>?> resetDefaults() async {
         final data = jsonDecode(response.body);
         return data['config']; // return just the updated config
       } else {
-        print("❌ Failed to reset defaults: ${response.statusCode} ${response.body}");
+        print(
+          "❌ Failed to reset defaults: ${response.statusCode} ${response.body}",
+        );
         return null;
       }
     } catch (e) {
@@ -91,29 +85,30 @@ static Future<Map<String, dynamic>?> resetDefaults() async {
     }
   }
 
-static Future<Map<String, dynamic>?> updateFullConfig(
-  Map<String, dynamic> fullConfig,
-) async {
-  try {
-    final response = await http.put(
-      Uri.parse("$baseUrl/config/full_update"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({"config": fullConfig}), // ✅ wrap inside "config"
-    );
+  static Future<Map<String, dynamic>?> updateFullConfig(
+    Map<String, dynamic> fullConfig,
+  ) async {
+    try {
+      final response = await http.put(
+        Uri.parse("$baseUrl/config/full_update"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"config": fullConfig}), // ✅ wrap inside "config"
+      );
 
-    if (response.statusCode == 200) {
-      print("✅ Full config updated successfully");
-      return jsonDecode(response.body);
-    } else {
-      print("❌ Error updating full config: ${response.statusCode} ${response.body}");
+      if (response.statusCode == 200) {
+        print("✅ Full config updated successfully");
+        return jsonDecode(response.body);
+      } else {
+        print(
+          "❌ Error updating full config: ${response.statusCode} ${response.body}",
+        );
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception updating full config: $e");
       return null;
     }
-  } catch (e) {
-    print("⚠️ Exception updating full config: $e");
-    return null;
   }
-}
-
 
   static Future<Map<String, dynamic>?> updateConfig({
     String? sourceFolder,
@@ -163,7 +158,7 @@ static Future<Map<String, dynamic>?> updateFullConfig(
     final response = await http.patch(
       Uri.parse("$baseUrl/config/rules/delete_category"),
       headers: {"Content-Type": "application/json"},
-      body: jsonEncode({'category':category}),
+      body: jsonEncode({'category': category}),
     );
 
     if (response.statusCode == 200) {
@@ -173,7 +168,6 @@ static Future<Map<String, dynamic>?> updateFullConfig(
       print("❌ Error deleting config: ${response.statusCode} ${response.body}");
       return null;
     }
-    
   }
 
   // static Future<bool> deleteRule(String category) async {
@@ -286,46 +280,60 @@ static Future<Map<String, dynamic>?> updateFullConfig(
     return null;
   }
 
-
-
   // ===== EXCEPTIONS =====
-static Future<List<String>?> getExceptions() async {
-  try {
-    final response = await http.get(Uri.parse("$baseUrl/config/exceptions"));
+  static Future<List<String>?> getExceptions() async {
+    try {
+      final response = await http.get(Uri.parse("$baseUrl/config/exceptions"));
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return List<String>.from(data['exceptions']);
-    } else {
-      print("❌ Error fetching exceptions: ${response.statusCode} ${response.body}");
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return List<String>.from(data['exceptions']);
+      } else {
+        print(
+          "❌ Error fetching exceptions: ${response.statusCode} ${response.body}",
+        );
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception while fetching exceptions: $e");
       return null;
     }
-  } catch (e) {
-    print("⚠️ Exception while fetching exceptions: $e");
-    return null;
   }
-}
 
-static Future<List<String>?> updateExceptions(List<String> exceptions) async {
-  try {
-    final response = await http.patch(
-      Uri.parse("$baseUrl/config/exceptions"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({"exceptions": exceptions}),
-    );
+  static Future<List<String>?> updateExceptions(List<String> exceptions) async {
+    try {
+      final response = await http.patch(
+        Uri.parse("$baseUrl/config/exceptions"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"exceptions": exceptions}),
+      );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print("✅ Exceptions updated successfully");
-      return List<String>.from(data['exceptions']);
-    } else {
-      print("❌ Error updating exceptions: ${response.statusCode} ${response.body}");
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print("✅ Exceptions updated successfully");
+        return List<String>.from(data['exceptions']);
+      } else {
+        print(
+          "❌ Error updating exceptions: ${response.statusCode} ${response.body}",
+        );
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception while updating exceptions: $e");
       return null;
     }
-  } catch (e) {
-    print("⚠️ Exception while updating exceptions: $e");
+  }
+
+  // ===== DARK MODE =====
+  static Future<bool?> getDarkMode() async {
+    final response = await http.get(Uri.parse('$baseUrl/config/dark_mode'));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body)['dark_mode'];
+    }
     return null;
   }
-}
 
+  static Future<void> updateDarkMode(bool value) async {
+    await http.patch(Uri.parse('$baseUrl/config/dark_mode?value=$value'));
+  }
 }
