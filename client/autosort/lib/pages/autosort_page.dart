@@ -16,48 +16,45 @@ class AutosortPage extends StatelessWidget {
     return Container(
       color: AppColors.pageBackground,
       height: double.infinity,
-
       padding: const EdgeInsets.all(20),
-      child: Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    'AutoSort',
-                    style: TextStyle(
-                      fontSize: AppFontSizes.kPageTitle,
-                      color: AppColors.primaryText,
-                      fontWeight: FontWeight.bold,
-                    ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  'AutoSort',
+                  style: TextStyle(
+                    fontSize: AppFontSizes.kPageTitle,
+                    color: AppColors.primaryText,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Automatically organize your files with just a few clicks',
-                style: TextStyle(
-                  fontSize: AppFontSizes.kBodyText,
-                  color: AppColors.secondaryText,
                 ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Automatically organize your files with just a few clicks',
+              style: TextStyle(
+                fontSize: AppFontSizes.kBodyText,
+                color: AppColors.secondaryText,
               ),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 400,
-                child: FileConfigCard(title: 'Folder Configuration'),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  ScanCard(),
-                  const SizedBox(width: 20),
-                  MonitorCard(),
-                ],
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 400,
+              child: const FileConfigCard(title: 'Folder Configuration'),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const ScanCard(),
+                const SizedBox(width: 20),
+                const MonitorCard(),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -77,11 +74,11 @@ class FileConfigCard extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
-            offset: Offset(2, 2),
+            offset: const Offset(2, 2),
           ),
         ],
       ),
@@ -90,11 +87,11 @@ class FileConfigCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(LucideIcons.folderOpen, color: AppColors.primaryText),
+              Icon(LucideIcons.folderOpen, color: AppColors.primaryText),
               const SizedBox(width: 10),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: AppFontSizes.kBodyText,
                   color: AppColors.primaryText,
@@ -103,7 +100,7 @@ class FileConfigCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          const Text(
+          Text(
             'Choose the folders where AutoSort will work',
             style: TextStyle(
               color: AppColors.secondaryText,
@@ -116,7 +113,7 @@ class FileConfigCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Source Folder',
                     style: TextStyle(
                       color: AppColors.primaryText,
@@ -127,7 +124,7 @@ class FileConfigCard extends StatelessWidget {
                   const SizedBox(height: 10),
                   const FolderPickerWidget(isSource: true),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Destination Folder',
                     style: TextStyle(
                       color: AppColors.primaryText,
@@ -141,8 +138,8 @@ class FileConfigCard extends StatelessWidget {
                     isSource: false,
                   ),
                   const SizedBox(height: 20),
-                  const Divider(thickness: 1, color: AppColors.divider),
-                  const Text(
+                  Divider(thickness: 1, color: AppColors.divider),
+                  Text(
                     'Transfer Mode',
                     style: TextStyle(
                       color: AppColors.primaryText,
@@ -151,7 +148,7 @@ class FileConfigCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  ModeToggle(initialValue: true),
+                  const ModeToggle(initialValue: true),
                 ],
               ),
             ),
@@ -168,8 +165,8 @@ class ButtonCard extends StatelessWidget {
   final String buttonText;
   final VoidCallback? onPressed;
   final IconData icon;
-  final Color buttonColor;
-  final Color hoverButtonColor;
+  final Color? buttonColor;
+  final Color? hoverButtonColor;
 
   const ButtonCard({
     super.key,
@@ -178,8 +175,8 @@ class ButtonCard extends StatelessWidget {
     required this.icon,
     this.buttonText = "HEHEHE",
     this.onPressed,
-    this.buttonColor = AppColors.buttonBackground,
-    this.hoverButtonColor = const Color.fromARGB(255, 71, 255, 9),
+    this.buttonColor,
+    this.hoverButtonColor,
   });
 
   @override
@@ -190,11 +187,11 @@ class ButtonCard extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
-            offset: Offset(2, 2),
+            offset: const Offset(2, 2),
           ),
         ],
       ),
@@ -220,15 +217,15 @@ class ButtonCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w300,
-                        fontSize: AppFontSizes.kSidebarItem, // ✅ used here
+                        fontSize: AppFontSizes.kSidebarItem,
                         color: AppColors.primaryText,
                       ),
                     ),
                     Text(
                       text,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.secondaryText,
                         fontSize: AppFontSizes.kBodyText,
                       ),
@@ -242,9 +239,9 @@ class ButtonCard extends StatelessWidget {
           CustomButton(
             text: buttonText,
             enableFlex: true,
-            backgroundColor: buttonColor,
+            backgroundColor: buttonColor ?? AppColors.buttonBackground,
             textColor: AppColors.buttonText,
-            hoverColor: hoverButtonColor,
+            hoverColor: hoverButtonColor ?? AppColors.buttonHover,
             onPressed: onPressed ?? () {},
           ),
         ],

@@ -46,7 +46,7 @@ class _ModeToggleState extends State<ModeToggle> {
             _isSafeMode
                 ? 'Safe mode with extra verification'
                 : 'Fast mode for quick processing',
-            style: const TextStyle(
+            style:  TextStyle(
               fontSize: AppFontSizes.kBodyText,
               color: AppColors.secondaryText,
             ),

@@ -22,10 +22,7 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
 
     _chartData = [];
 
-    _tooltipBehavior = TooltipBehavior(
-      enable: true,
-      format: 'point.x : point.y',
-    );
+    _tooltipBehavior = TooltipBehavior(enable: true);
 
     _loadCounts();
   }
@@ -60,17 +57,27 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
         position: LegendPosition.bottom,
         isVisible: true,
         overflowMode: LegendItemOverflowMode.wrap,
+        textStyle: TextStyle(color: AppColors.primaryText),
       ),
       tooltipBehavior: _tooltipBehavior,
       series: <DoughnutSeries<_ChartData, String>>[
         DoughnutSeries<_ChartData, String>(
-          radius: '90%', // make chart fill more of its container
-          innerRadius: '40%',
+          radius: '80%', // make chart fill more of its container
+          innerRadius: '30%',
           dataSource: _chartData,
           xValueMapper: (_ChartData data, _) => data.label,
           yValueMapper: (_ChartData data, _) => data.value,
           dataLabelMapper: (_ChartData data, _) => data.text,
-          dataLabelSettings: const DataLabelSettings(isVisible: true),
+          dataLabelSettings: DataLabelSettings(
+            isVisible: true,
+            // color: const Color.fromARGB(0, 0, 0, 0),
+            textStyle: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+              color: AppColors.primaryText,
+            ),
+            connectorLineSettings: ConnectorLineSettings(),
+          ),
           explode: true,
           explodeIndex: _explodeIndex,
           onPointTap: (ChartPointDetails details) {

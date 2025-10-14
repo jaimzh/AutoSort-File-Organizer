@@ -121,7 +121,7 @@ class _FolderPickerWidgetState extends State<FolderPickerWidget> {
             controller: _controller,
             onTap: _pickFolder,
             readOnly: true,
-            style: const TextStyle(fontSize: 14, color: AppColors.primaryText),
+            style: TextStyle(fontSize: 14, color: AppColors.primaryText),
             decoration: InputDecoration(
               isDense: true,
               contentPadding: const EdgeInsets.symmetric(
@@ -138,7 +138,12 @@ class _FolderPickerWidgetState extends State<FolderPickerWidget> {
           ),
         ),
         const SizedBox(width: 10),
-        CustomButton(text: "Browse", onPressed: _pickFolder),
+        CustomButton(
+          text: "Browse",
+          onPressed: _pickFolder,
+
+          hoverColor: AppColors.buttonHover,
+        ),
       ],
     );
   }

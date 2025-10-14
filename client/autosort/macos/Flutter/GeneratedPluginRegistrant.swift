@@ -10,6 +10,7 @@ import file_selector_macos
 import path_provider_foundation
 import rive_common
 import screen_retriever_macos
+import url_launcher_macos
 import window_manager
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
@@ -18,5 +19,6 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   RivePlugin.register(with: registry.registrar(forPlugin: "RivePlugin"))
   ScreenRetrieverMacosPlugin.register(with: registry.registrar(forPlugin: "ScreenRetrieverMacosPlugin"))
+  UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
   WindowManagerPlugin.register(with: registry.registrar(forPlugin: "WindowManagerPlugin"))
 }

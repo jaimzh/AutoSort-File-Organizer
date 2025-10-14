@@ -54,7 +54,7 @@ class _ScanCardState extends State<ScanCard> {
         buttonColor: isScanning ? Colors.red : AppColors.buttonBackground,
         hoverButtonColor: isScanning
             ? const Color.fromARGB(255, 255, 82, 70)
-            : const Color.fromARGB(255, 30, 30, 30),
+            : AppColors.buttonHover,
         onPressed: toggleScanning,
       ),
     );

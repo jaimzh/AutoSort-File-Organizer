@@ -71,7 +71,7 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
           color: AppColors.cardBackground,
           border: Border.all(color: AppColors.cardBorder, width: 0.5),
           borderRadius: BorderRadius.circular(12),
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
               color: AppColors.cardShadow,
               blurRadius: 4,
@@ -142,7 +142,7 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
                           ? 5
                           : _activities.length,
                       separatorBuilder: (_, __) =>
-                          const Divider(height: 1, color: Colors.grey),
+                           Divider(height: 1, color: AppColors.divider),
                       itemBuilder: (context, index) {
                         final log = _activities[index];
                         final file = log['file'] ?? {};
@@ -170,7 +170,7 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
                                 flex: 3,
                                 child: Text(
                                   filename,
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.secondaryText,
                                   ),
@@ -179,12 +179,12 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
                               ),
 
                               // Arrow
-                              const Padding(
+                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Icon(
                                   Icons.arrow_forward,
                                   size: 16,
-                                  color: Colors.black,
+                                  color: AppColors.iconColor,
                                 ),
                               ),
 
@@ -193,7 +193,7 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
                                 flex: 2,
                                 child: Text(
                                   category,
-                                  style: const TextStyle(color: Colors.black54),
+                                  style:  TextStyle(color: AppColors.secondaryText),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -201,8 +201,8 @@ class _RecentActivityCardState extends State<RecentActivityCard> {
                               // Time ago
                               Text(
                                 timeAgo,
-                                style: const TextStyle(
-                                  color: Colors.black45,
+                                style:  TextStyle(
+                                  color: AppColors.secondaryText,
                                   fontSize: 12,
                                 ),
                                 textAlign: TextAlign.right,

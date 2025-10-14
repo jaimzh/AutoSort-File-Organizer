@@ -74,7 +74,7 @@ class _LogsPageState extends State<LogsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Logs',
             style: TextStyle(
               fontSize: AppFontSizes.kPageTitle,
@@ -151,15 +151,17 @@ class FilterButtons extends StatelessWidget {
             text: f,
             onPressed: () => onSelected(f),
             backgroundColor: isSelected
-                ? Colors.black
-                : Colors.white, // selected vs normal
-            textColor: isSelected ? Colors.white : Colors.black,
+                ? AppColors.buttonBackground
+                : AppColors.primaryBackground, // selected vs normal
+            textColor: isSelected
+                ? AppColors.buttonText
+                : AppColors.secondaryText,
             borderRadius: 8,
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
             elevation: 0,
             hoverColor: isSelected
-                ? const Color.fromARGB(255, 50, 50, 50)
-                : const Color.fromARGB(255, 230, 230, 230),
+                ? AppColors.buttonBackground
+                : const Color.fromARGB(19, 13, 13, 13),
           ),
         );
       }).toList(),
@@ -194,7 +196,7 @@ class LogsCard extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -210,8 +212,8 @@ class LogsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                children: const [
-                  Icon(LucideIcons.fileText, color: AppColors.primaryText),
+                children: [
+                  Icon(LucideIcons.fileText, color: AppColors.iconColor),
                   SizedBox(width: 10),
                   Text(
                     "Activity Log",
@@ -228,13 +230,21 @@ class LogsCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.refresh, size: 20),
+                    icon: Icon(
+                      Icons.refresh,
+                      size: 20,
+                      color: AppColors.iconColor,
+                    ),
                     tooltip: "Reload",
                     onPressed: onRefresh,
                   ),
                   const SizedBox(width: 6),
                   IconButton(
-                    icon: const Icon(Icons.delete_outline, size: 20),
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: AppColors.iconColor,
+                      size: 20,
+                    ),
                     tooltip: "Clear Logs",
                     onPressed: () async {
                       final confirm = await showDialog<bool>(
@@ -302,7 +312,8 @@ class LogsCard extends StatelessWidget {
                           children: [
                             Icon(
                               _getIcon(entry),
-                              color: AppColors.buttonBackground,
+                              color: AppColors.iconColor,
+
                               size: 18,
                             ),
                             const SizedBox(width: 12),
@@ -314,7 +325,7 @@ class LogsCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     entry.message,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.secondaryText,
                                     ),

@@ -93,7 +93,7 @@ class _RecentActivityState extends State<RecentActivity> {
                 flex: 3,
                 child: Text(
                   filename,
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontWeight: FontWeight.bold,
                     color: AppColors.secondaryText,
                   ),
@@ -102,9 +102,9 @@ class _RecentActivityState extends State<RecentActivity> {
               ),
 
               // 2. Arrow icon
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(Icons.arrow_forward, size: 16, color: Colors.black),
+                child: Icon(Icons.arrow_forward, size: 16, color: AppColors.iconColor),
               ),
 
               // 3. Destination (category)
@@ -114,7 +114,7 @@ class _RecentActivityState extends State<RecentActivity> {
                   children: [
                     Text(
                       category,
-                      style: const TextStyle(color: Colors.black54),
+                      style:  TextStyle(color: AppColors.secondaryText),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -124,7 +124,7 @@ class _RecentActivityState extends State<RecentActivity> {
               // 4. Time ago (aligned right)
               Text(
                 timeAgo,
-                style: const TextStyle(color: Colors.black45, fontSize: 12),
+                style:  TextStyle(color: AppColors.secondaryText, fontSize: 12),
                 textAlign: TextAlign.right,
               ),
             ],

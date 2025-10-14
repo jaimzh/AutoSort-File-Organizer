@@ -3,6 +3,7 @@ import 'package:autosort/theme.dart';
 import 'package:autosort/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -71,7 +72,7 @@ class LinksAndSupport extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -97,8 +98,22 @@ class LinksAndSupport extends StatelessWidget {
             children: [
               CustomButton(
                 text: 'View on GitHub',
+
                 icon: LucideIcons.github,
-                onPressed: () {},
+                backgroundColor: Colors.transparent,
+                textColor: AppColors.primaryText,
+                hoverColor: const Color.fromARGB(19, 215, 215, 215),
+
+                onPressed: () async {
+                  final Uri url = Uri.parse(
+                    'https://github.com/jaimzh/AutoSort-File-Organizer',
+                  );
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
               ),
               CustomButton(
                 text: 'Website',
@@ -129,7 +144,7 @@ class KeyFeatures extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -239,6 +254,7 @@ class FeatureTitle extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
+              color: AppColors.primaryText,
               fontSize: AppFontSizes.kSidebarItem,
               fontWeight: FontWeight.bold,
             ),
@@ -295,7 +311,7 @@ class ImageVersion extends StatelessWidget {
           ),
           child: Text(
             'Version 0.1.0',
-            style: TextStyle(fontSize: 10, color: AppColors.buttonText),
+            style: TextStyle(fontSize: 10, color: AppColors.white),
           ),
         ),
       ],

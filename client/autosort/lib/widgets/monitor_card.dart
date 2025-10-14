@@ -33,7 +33,7 @@ class _MonitorCardState extends State<MonitorCard> {
         buttonColor: isMonitoring ? Colors.red : AppColors.buttonBackground,
         hoverButtonColor: isMonitoring
             ? const Color.fromARGB(255, 255, 82, 70)
-            : const Color.fromARGB(255, 30, 30, 30),
+            : AppColors.buttonHover,
         onPressed: toggleMonitoring,
       ),
     );

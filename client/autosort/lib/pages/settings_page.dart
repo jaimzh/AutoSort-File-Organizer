@@ -183,7 +183,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Settings',
                     style: TextStyle(
                       fontSize: AppFontSizes.kPageTitle,
@@ -207,7 +207,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               const SizedBox(height: 20),
               _buildCard("Another Section", "Additional configuration info."),
-
+              const SizedBox(height: 20),
               ThemeSwitch(),
             ],
           ),
@@ -223,7 +223,7 @@ class _SettingsPageState extends State<SettingsPage> {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -236,11 +236,11 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           Row(
             children: [
-              const Icon(LucideIcons.scroll, color: AppColors.primaryText),
+              Icon(LucideIcons.scroll, color: AppColors.primaryText),
               const SizedBox(width: 10),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: AppFontSizes.kBodyText,
                   color: AppColors.primaryText,
@@ -249,10 +249,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            subtitle,
-            style: const TextStyle(color: AppColors.secondaryText),
-          ),
+          Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
         ],
       ),
     );

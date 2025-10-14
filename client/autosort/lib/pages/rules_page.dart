@@ -68,7 +68,7 @@ class _ExceptionsContainerState extends State<ExceptionsContainer> {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -99,7 +99,11 @@ class _ExceptionsContainerState extends State<ExceptionsContainer> {
               ),
 
               IconButton(
-                icon: Icon(Icons.add_circle_outline, size: 22),
+                icon: Icon(
+                  Icons.add_circle_outline,
+                  size: 22,
+                  color: AppColors.iconColor,
+                ),
                 tooltip: "Add Exception",
 
                 onPressed: () async {
@@ -143,10 +147,16 @@ class _ExceptionsContainerState extends State<ExceptionsContainer> {
                           horizontal: 8,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: AppColors.pill,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: Text(ext, style: const TextStyle(fontSize: 12)),
+                        child: Text(
+                          ext,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppColors.primaryText,
+                          ),
+                        ),
                       ),
                     )
                     .toList(),
@@ -221,7 +231,7 @@ class _RulesContainerState extends State<RulesContainer> {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -237,8 +247,8 @@ class _RulesContainerState extends State<RulesContainer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                children: const [
-                  Icon(LucideIcons.scroll, color: AppColors.primaryText),
+                children: [
+                  Icon(LucideIcons.scroll, color: AppColors.iconColor),
                   SizedBox(width: 10),
                   Text(
                     "Folder Rules",
@@ -252,13 +262,17 @@ class _RulesContainerState extends State<RulesContainer> {
               ),
               Row(
                 children: [
+                  // IconButton(
+                  //   icon: const Icon(Icons.code, size: 22),
+                  //   tooltip: "Edit Config",
+                  //   onPressed: () {},
+                  // ),
                   IconButton(
-                    icon: const Icon(Icons.code, size: 22),
-                    tooltip: "Edit Config",
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.add_circle_outline, size: 22),
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      size: 22,
+                      color: AppColors.iconColor,
+                    ),
                     tooltip: "Add Rule",
                     onPressed: () async {
                       showDialog(
@@ -447,7 +461,7 @@ class RuleCard extends StatelessWidget {
         color: AppColors.cardBackground,
         border: Border.all(color: AppColors.cardBorder, width: 0.5),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 4,
@@ -471,9 +485,10 @@ class RuleCard extends StatelessWidget {
                   const SizedBox(width: 12),
                   Text(
                     rule.category,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: AppColors.primaryText,
                     ),
                   ),
                 ],
@@ -481,11 +496,19 @@ class RuleCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.edit, size: 20),
+                    icon: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: AppColors.iconColor,
+                    ),
                     onPressed: onEdit,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.delete_outline, size: 20),
+                    icon: Icon(
+                      Icons.delete_outline,
+                      size: 20,
+                      color: AppColors.iconColor,
+                    ),
                     onPressed: onDelete,
                   ),
                 ],
@@ -504,10 +527,16 @@ class RuleCard extends StatelessWidget {
                       horizontal: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
+                      color: AppColors.pill,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Text(ext, style: const TextStyle(fontSize: 12)),
+                    child: Text(
+                      ext,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.primaryText,
+                      ),
+                    ),
                   ),
                 )
                 .toList(),

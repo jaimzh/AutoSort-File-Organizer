@@ -26,7 +26,6 @@ class _DashboardPageState extends State<DashboardPage> {
     "Others",
   ];
 
-
   @override
   void initState() {
     super.initState();
@@ -58,7 +57,7 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Dashboard',
             style: TextStyle(
               fontSize: AppFontSizes.kPageTitle,
@@ -157,7 +156,7 @@ class DashboardCard extends StatelessWidget {
           color: AppColors.cardBackground,
           border: Border.all(color: AppColors.cardBorder, width: 0.5),
           borderRadius: BorderRadius.circular(12),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: AppColors.cardShadow,
               blurRadius: 4,
@@ -174,7 +173,7 @@ class DashboardCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: AppFontSizes.kBodyText,
                     color: AppColors.primaryText,
@@ -215,7 +214,7 @@ class FileCountCard extends StatelessWidget {
           color: AppColors.cardBackground,
           border: Border.all(color: AppColors.cardBorder, width: 0.5),
           borderRadius: BorderRadius.circular(12),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: AppColors.cardShadow,
               blurRadius: 4,
@@ -229,12 +228,12 @@ class FileCountCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon, color: AppColors.primaryText, size: 22),
+                Icon(icon, color: AppColors.iconColor, size: 22),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: AppFontSizes.kBodyText,
                       color: AppColors.primaryText,
@@ -248,7 +247,7 @@ class FileCountCard extends StatelessWidget {
             Center(
               child: Text(
                 count.toString(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                   color: AppColors.primaryText,
