@@ -170,40 +170,6 @@ class ApiService {
     }
   }
 
-  // static Future<bool> deleteRule(String category) async {
-  //   try {
-  //     // Fetch current config
-  //     final config = await getConfig();
-  //     if (config == null) return false;
-
-  //     // Copy current rules
-  //     final rules = Map<String, dynamic>.from(config['rules']);
-
-  //     // Remove the target category
-  //     rules.remove(category);
-
-  //     // Update backend with modified rules
-  //     final updatedConfig = {...config, 'rules': rules};
-
-  //     final response = await http.patch(
-  //       Uri.parse("$baseUrl/config/rules"),
-  //       headers: {"Content-Type": "application/json"},
-  //       body: jsonEncode(updatedConfig),
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       print("✅ Rule '$category' deleted successfully");
-  //       return true;
-  //     } else {
-  //       print("❌ Error deleting rule: ${response.statusCode} ${response.body}");
-  //       return false;
-  //     }
-  //   } catch (e) {
-  //     print("⚠️ Exception deleting rule: $e");
-  //     return false;
-  //   }
-  // }
-
   // ===== SCAN =====
   static Future<void> startScan() async {
     final response = await http.post(Uri.parse("$baseUrl/scan/start"));

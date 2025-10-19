@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 from autosort.core.autosort import AutoSort
 from autosort.core.config import ConfigManager
 from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs
+from fastapi import HTTPException
+
 
 app = FastAPI(title="AutoSort API", version="1.0.0")
 
@@ -28,6 +31,15 @@ class RuleCategory(BaseModel):
 class FullConfigUpdate(BaseModel):
     config: dict  
     
+class WaitBeforeCopyUpdate(BaseModel):
+    wait_before_copy: int
+
+class VerifyDelayUpdate(BaseModel):
+    verify_delay: int
+    
+class ManageDuplicatesUpdate(BaseModel): 
+    merge_duplicates: bool
+  
 @app.get("/")
 def read_root():
     return {"message": "alright so this is the autosort api"}
@@ -95,6 +107,7 @@ async def reset_config_to_defaults():
             "verify_delay": 2,
             "mode": "fast",
             "merge_duplicates": False,
+            "dark_mode": True,
         }
 
         # Replace the entire config with defaults
@@ -246,7 +259,7 @@ def get_counts():
     return get_lifetime_counts()
 
 
-from fastapi import HTTPException
+
 
 @app.get("/config/dark_mode")
 def get_dark_mode():
@@ -267,6 +280,30 @@ def update_dark_mode(value: bool):
 
 
 
+@app.patch("/config/wait_before_copy")
+def get_wait_before_copy(update: WaitBeforeCopyUpdate):
+    try: 
+        autosort.config.set("wait_before_copy", update.wait_before_copy)
+        return {"message": "wait_before_copy updated", "wait_before_copy": update.wait_before_copy}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.patch("/config/verify_delay")
+def update_verify_delay(update: VerifyDelayUpdate):
+    try: 
+        autosort.config.set("verify_delay", update.verify_delay)  
+    except Exception as e: 
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.patch("/config/merge_duplicates")
+def update_merge_duplicates(update: ManageDuplicatesUpdate): 
+    try: 
+        autosort.config.set("merge_duplicates", update.merge_duplicates)
+    except Exception as e: 
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+    
 app.get("")
 
 if __name__ == "__main__":
