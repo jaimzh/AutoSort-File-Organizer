@@ -1,6 +1,4 @@
-import 'package:autosort/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AppColors {
   static late Color pageBackground;
@@ -72,16 +70,7 @@ class AppColors {
     }
   }
 
-  // static const Color primaryBackground = Color(0xFFF5F5F5); // Light gray
-  // static const Color secondaryBackground = Color(0xFFE0E0E0);
-  // static const Color greyBackground = Color(0xFFE0E0E0);
 
-  // text color
-
-  //card colors
-  // static const Color cardBackground = Colors.white;
-  // static const Color cardBorder = Color.fromARGB(67, 0, 0, 0);
-  // static const Color cardShadow = Color.fromARGB(28, 0, 0, 0);
 
   //semantic colors
   static const Color deleteBtn = Colors.red;

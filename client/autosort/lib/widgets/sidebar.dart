@@ -7,7 +7,6 @@ import 'package:autosort/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:autosort/pages/dashboard_page.dart';
-import 'package:autosort/theme.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class Sidebar extends StatefulWidget {

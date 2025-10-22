@@ -94,8 +94,7 @@ async def reset_config_to_defaults():
                 "Audio": [".mp3", ".wav", ".aac", ".flac", ".ogg"],
                 "Archives": [".zip", ".rar", ".iso", ".7z", ".tar", ".gz"],
                 "Others": [],
-                "Subtitles": [".srt"],
-            },
+                          },
             "exceptions": [
                 ".crdownload",
                 ".part",

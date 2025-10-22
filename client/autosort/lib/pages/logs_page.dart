@@ -309,6 +309,8 @@ class LogsCard extends StatelessWidget {
                           horizontal: 8,
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               _getIcon(entry),
@@ -334,9 +336,9 @@ class LogsCard extends StatelessWidget {
                                   const SizedBox(height: 2),
                                   Text(
                                     "${entry.type.toUpperCase()} • ${entry.action}",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 12,
-                                      color: Colors.black54,
+                                      color: AppColors.secondaryText,
                                     ),
                                   ),
                                 ],

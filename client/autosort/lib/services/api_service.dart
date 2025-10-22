@@ -302,4 +302,72 @@ class ApiService {
   static Future<void> updateDarkMode(bool value) async {
     await http.patch(Uri.parse('$baseUrl/config/dark_mode?value=$value'));
   }
+
+
+  // ===== CONFIG TIMINGS =====
+
+  static Future<Map<String, dynamic>?> updateWaitBeforeCopy(int waitBeforeCopy) async {
+    try {
+      final response = await http.patch(
+        Uri.parse("$baseUrl/config/wait_before_copy"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"wait_before_copy": waitBeforeCopy}),
+      );
+
+      if (response.statusCode == 200) {
+        print("✅ wait_before_copy updated successfully");
+        return jsonDecode(response.body);
+      } else {
+        print("❌ Error updating wait_before_copy: ${response.statusCode} ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception updating wait_before_copy: $e");
+      return null;
+    }
+  }
+
+  static Future<Map<String, dynamic>?> updateVerifyDelay(int verifyDelay) async {
+    try {
+      final response = await http.patch(
+        Uri.parse("$baseUrl/config/verify_delay"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"verify_delay": verifyDelay}),
+      );
+
+      if (response.statusCode == 200) {
+        print("✅ verify_delay updated successfully");
+        return jsonDecode(response.body);
+      } else {
+        print("❌ Error updating verify_delay: ${response.statusCode} ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception updating verify_delay: $e");
+      return null;
+    }
+  }
+
+  static Future<Map<String, dynamic>?> updateMergeDuplicates(bool mergeDuplicates) async {
+    try {
+      final response = await http.patch(
+        Uri.parse("$baseUrl/config/merge_duplicates"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"merge_duplicates": mergeDuplicates}),
+      );
+
+      if (response.statusCode == 200) {
+        print("✅ merge_duplicates updated successfully");
+        return jsonDecode(response.body);
+      } else {
+        print("❌ Error updating merge_duplicates: ${response.statusCode} ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("⚠️ Exception updating merge_duplicates: $e");
+      return null;
+    }
+  }
+
+
 }

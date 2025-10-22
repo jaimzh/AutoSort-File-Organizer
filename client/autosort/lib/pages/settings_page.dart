@@ -209,6 +209,8 @@ class _SettingsPageState extends State<SettingsPage> {
               _buildCard("Another Section", "Additional configuration info."),
               const SizedBox(height: 20),
               ThemeSwitch(),
+              SizedBox(height: 20),
+              DuplicateSwitch(),
             ],
           ),
         );
@@ -250,6 +252,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const SizedBox(height: 10),
           Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -266,14 +269,82 @@ class ThemeSwitch extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Dark Mode'),
+            Text(
+              theme.isDarkMode ? 'Dark Mode' : 'light mode',
+              style: TextStyle(
+                fontSize: AppFontSizes.kBodyText,
+                color: AppColors.secondaryText,
+              ),
+            ),
             Switch(
+              hoverColor: const Color.fromARGB(139, 255, 255, 255),
+              splashRadius: 15,
               value: theme.isDarkMode,
               onChanged: (_) => theme.toggleTheme(),
             ),
           ],
         );
       },
+    );
+  }
+}
+
+class DuplicateSwitch extends StatefulWidget {
+  const DuplicateSwitch({super.key});
+
+  @override
+  State<DuplicateSwitch> createState() => _DuplicateSwitchState();
+}
+
+class _DuplicateSwitchState extends State<DuplicateSwitch> {
+  bool _mergeDuplicates = false;
+  bool _isLoading = true;
+
+  Future<void> _fetchMergeDuplicateSetting() async {
+    final config = await ApiService.getConfig();
+    if (config != null && config.containsKey('merge_duplicates')) {
+      setState(() {
+        _mergeDuplicates = config['merge_duplicates'];
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _toggleMergeDuplicates(bool newValue) async {
+    setState(() => _mergeDuplicates = newValue);
+    await ApiService.updateMergeDuplicates(newValue);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchMergeDuplicateSetting();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Merge Duplicates',
+          style: TextStyle(
+            fontSize: AppFontSizes.kBodyText,
+            color: AppColors.secondaryText,
+          ),
+        ),
+
+        Switch(
+          hoverColor: const Color.fromARGB(139, 255, 255, 255),
+          splashRadius: 15,
+          value: _mergeDuplicates,
+          onChanged: (value) => _toggleMergeDuplicates(value),
+        ),
+      ],
     );
   }
 }
