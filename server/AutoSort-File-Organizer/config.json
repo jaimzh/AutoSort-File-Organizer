@@ -44,9 +44,9 @@
     ".temp",
     ".fdmdownload"
   ],
-  "wait_before_copy": 1,
+  "wait_before_copy": 4,
   "verify_delay": 2,
   "mode": "safe",
   "merge_duplicates": false,
-  "dark_mode": false
+  "dark_mode": true
 }

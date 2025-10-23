@@ -28,7 +28,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _handleConfigUpdate(Map<String, dynamic> updatedConfig) {
     setState(() {
-     
       _configFuture = Future.value(updatedConfig);
     });
   }
@@ -83,10 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const SizedBox(height: 20),
 
-                _buildCard(
-                  "File Processing",
-                  "Processing details will appear here.",
-                ),
+                FileProcessingCard(),
                 const SizedBox(height: 20),
                 _buildCard("Another Section", "Additional configuration info."),
                 const SizedBox(height: 20),
@@ -136,18 +132,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     tooltip: "Reset Config",
                     onPressed: () async {
-                      
                       final resetConfig = await ApiService.resetDefaults();
                       if (resetConfig != null) {
-                       
                         controller.text = const JsonEncoder.withIndent(
                           '  ',
                         ).convert(resetConfig);
 
-                        
                         onSave(resetConfig);
 
-                      
                         if (dialogContext.mounted) {
                           ScaffoldMessenger.of(dialogContext).showSnackBar(
                             const SnackBar(
@@ -329,7 +321,6 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-     
       return const SizedBox(height: 30);
     }
 
@@ -350,6 +341,124 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
           onChanged: (value) => _toggleMergeDuplicates(value),
         ),
       ],
+    );
+  }
+}
+
+class FileProcessingCard extends StatefulWidget {
+  const FileProcessingCard({super.key});
+
+  @override
+  State<FileProcessingCard> createState() => _FileProcessingCardState();
+}
+
+class _FileProcessingCardState extends State<FileProcessingCard> {
+  int _waitBeforeCopy = 0;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchWaitBeforeCopy();
+  }
+
+  Future<void> _fetchWaitBeforeCopy() async {
+    final config = await ApiService.getConfig();
+    if (config != null && config.containsKey('wait_before_copy')) {
+      setState(() {
+        _waitBeforeCopy = config['wait_before_copy'];
+        _isLoading = false;
+      });
+    } else {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _updateWaitBeforeCopy(int newValue) async {
+    setState(() => _waitBeforeCopy = newValue);
+    await ApiService.updateWaitBeforeCopy(newValue);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        border: Border.all(color: AppColors.cardBorder, width: 0.5),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.cardShadow,
+            blurRadius: 4,
+            offset: const Offset(2, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 🧾 Header
+          Row(
+            children: [
+              Icon(LucideIcons.scroll, color: AppColors.primaryText),
+              const SizedBox(width: 10),
+              Text(
+                'File Processing',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: AppFontSizes.kBodyText,
+                  color: AppColors.primaryText,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+
+          Text(
+            'Configure how long the system waits before copying files.',
+            style: TextStyle(color: AppColors.secondaryText),
+          ),
+          const SizedBox(height: 20),
+
+          // ⏱ Dropdown Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Wait Before Copy (seconds)',
+                style: TextStyle(
+                  fontSize: AppFontSizes.kBodyText,
+                  color: AppColors.secondaryText,
+                ),
+              ),
+
+              // 🔽 Dropdown
+              DropdownButton<int>(
+                value: _waitBeforeCopy,
+                dropdownColor: AppColors.cardBackground,
+                style: TextStyle(color: AppColors.primaryText),
+                items: List.generate(
+                  11, // values 0–10
+                  (i) => DropdownMenuItem(
+                    value: i,
+                    child: Text('$i s'),
+                  ),
+                ),
+                onChanged: (newValue) {
+                  if (newValue != null) {
+                    _updateWaitBeforeCopy(newValue);
+                  }
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
