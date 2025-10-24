@@ -83,12 +83,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 const SizedBox(height: 20),
 
                 FileProcessingCard(),
-                const SizedBox(height: 20),
-                _buildCard("Another Section", "Additional configuration info."),
-                const SizedBox(height: 20),
-                ThemeSwitch(),
-                SizedBox(height: 20),
-                DuplicateSwitch(),
               ],
             ),
           ),
@@ -216,46 +210,6 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
   }
-
-  Widget _buildCard(String title, String subtitle) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        border: Border.all(color: AppColors.cardBorder, width: 0.5),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.cardShadow,
-            blurRadius: 4,
-            offset: Offset(2, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(LucideIcons.scroll, color: AppColors.primaryText),
-              const SizedBox(width: 10),
-              Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: AppFontSizes.kBodyText,
-                  color: AppColors.primaryText,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
-          const SizedBox(height: 10),
-        ],
-      ),
-    );
-  }
 }
 
 class ThemeSwitch extends StatelessWidget {
@@ -355,11 +309,13 @@ class FileProcessingCard extends StatefulWidget {
 class _FileProcessingCardState extends State<FileProcessingCard> {
   int _waitBeforeCopy = 0;
   bool _isLoading = true;
+  int _verifyCopy = 0;
 
   @override
   void initState() {
     super.initState();
     _fetchWaitBeforeCopy();
+    _fetchVerifyDelay();
   }
 
   Future<void> _fetchWaitBeforeCopy() async {
@@ -377,6 +333,23 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
   Future<void> _updateWaitBeforeCopy(int newValue) async {
     setState(() => _waitBeforeCopy = newValue);
     await ApiService.updateWaitBeforeCopy(newValue);
+  }
+
+  Future<void> _fetchVerifyDelay() async {
+    final config = await ApiService.getConfig();
+    if (config != null && config.containsKey('verify_delay')) {
+      setState(() {
+        _verifyCopy = config['verify_delay'];
+        _isLoading = false;
+      });
+    } else {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _updateVerifyDelay(int newValue) async {
+    setState(() => _verifyCopy = newValue);
+    await ApiService.updateVerifyDelay(newValue);
   }
 
   @override
@@ -402,7 +375,6 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🧾 Header
           Row(
             children: [
               Icon(LucideIcons.scroll, color: AppColors.primaryText),
@@ -425,7 +397,6 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
           ),
           const SizedBox(height: 20),
 
-          // ⏱ Dropdown Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -437,17 +408,13 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
                 ),
               ),
 
-              // 🔽 Dropdown
               DropdownButton<int>(
                 value: _waitBeforeCopy,
-                dropdownColor: AppColors.cardBackground,
+                dropdownColor: AppColors.pageBackground,
                 style: TextStyle(color: AppColors.primaryText),
                 items: List.generate(
-                  11, // values 0–10
-                  (i) => DropdownMenuItem(
-                    value: i,
-                    child: Text('$i s'),
-                  ),
+                  11,
+                  (i) => DropdownMenuItem(value: i, child: Text('$i s')),
                 ),
                 onChanged: (newValue) {
                   if (newValue != null) {
@@ -457,8 +424,84 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
               ),
             ],
           ),
+
+          SizedBox(height: 10),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Verify copy (seconds)',
+                style: TextStyle(
+                  fontSize: AppFontSizes.kBodyText,
+                  color: AppColors.secondaryText,
+                ),
+              ),
+
+              DropdownButton<int>(
+                value: _verifyCopy,
+                dropdownColor: AppColors.pageBackground,
+                style: TextStyle(color: AppColors.primaryText),
+                items: List.generate(
+                  11,
+                  (i) => DropdownMenuItem(value: i, child: Text('$i s')),
+                ),
+                onChanged: (newValue) {
+                  if (newValue != null) {
+                    _updateVerifyDelay(newValue);
+                  }
+                },
+              ),
+            ],
+          ),
+          Divider(color: AppColors.secondaryText),
+          const SizedBox(height: 20),
+          DuplicateSwitch(),
+          SizedBox(height: 20),
+          ThemeSwitch(),
         ],
       ),
     );
   }
+}
+
+// NOT REALLY USED AT ALL THIS IS JUST SOME CARD THAT WIDGET THAT I CAN USE AS REFERENCE, SHOULD JUST PUT IT IN A WIDGET FOLDER TBH
+Widget _buildCard(String title, String subtitle) {
+  return Container(
+    padding: const EdgeInsets.all(20),
+    decoration: BoxDecoration(
+      color: AppColors.cardBackground,
+      border: Border.all(color: AppColors.cardBorder, width: 0.5),
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        BoxShadow(
+          color: AppColors.cardShadow,
+          blurRadius: 4,
+          offset: Offset(2, 2),
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(LucideIcons.scroll, color: AppColors.primaryText),
+            const SizedBox(width: 10),
+            Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: AppFontSizes.kBodyText,
+                color: AppColors.primaryText,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
+        const SizedBox(height: 10),
+      ],
+    ),
+  );
 }
