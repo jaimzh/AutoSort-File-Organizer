@@ -466,42 +466,42 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
 }
 
 // NOT REALLY USED AT ALL THIS IS JUST SOME CARD THAT WIDGET THAT I CAN USE AS REFERENCE, SHOULD JUST PUT IT IN A WIDGET FOLDER TBH
-Widget _buildCard(String title, String subtitle) {
-  return Container(
-    padding: const EdgeInsets.all(20),
-    decoration: BoxDecoration(
-      color: AppColors.cardBackground,
-      border: Border.all(color: AppColors.cardBorder, width: 0.5),
-      borderRadius: BorderRadius.circular(12),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.cardShadow,
-          blurRadius: 4,
-          offset: Offset(2, 2),
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Icon(LucideIcons.scroll, color: AppColors.primaryText),
-            const SizedBox(width: 10),
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: AppFontSizes.kBodyText,
-                color: AppColors.primaryText,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
-        const SizedBox(height: 10),
-      ],
-    ),
-  );
-}
+// Widget _buildCard(String title, String subtitle) {
+//   return Container(
+//     padding: const EdgeInsets.all(20),
+//     decoration: BoxDecoration(
+//       color: AppColors.cardBackground,
+//       border: Border.all(color: AppColors.cardBorder, width: 0.5),
+//       borderRadius: BorderRadius.circular(12),
+//       boxShadow: [
+//         BoxShadow(
+//           color: AppColors.cardShadow,
+//           blurRadius: 4,
+//           offset: Offset(2, 2),
+//         ),
+//       ],
+//     ),
+//     child: Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Row(
+//           children: [
+//             Icon(LucideIcons.scroll, color: AppColors.primaryText),
+//             const SizedBox(width: 10),
+//             Text(
+//               title,
+//               style: TextStyle(
+//                 fontWeight: FontWeight.bold,
+//                 fontSize: AppFontSizes.kBodyText,
+//                 color: AppColors.primaryText,
+//               ),
+//             ),
+//           ],
+//         ),
+//         const SizedBox(height: 10),
+//         Text(subtitle, style: TextStyle(color: AppColors.secondaryText)),
+//         const SizedBox(height: 10),
+//       ],
+//     ),
+//   );
+// }

@@ -1,6 +1,6 @@
 # autosort
 
-A new Flutter project.
+AutoSort.
 
 ## Getting Started
 
