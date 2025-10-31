@@ -412,8 +412,10 @@ class ThemeSwitch extends StatelessWidget {
               thumbColor: WidgetStateProperty.all(
                 theme.isDarkMode ? Colors.white : Colors.black,
               ),
-              activeTrackColor: const Color.fromARGB(255, 30, 30, 30),
-              inactiveTrackColor: Colors.white,
+              activeTrackColor: theme.isDarkMode
+                  ? const Color.fromARGB(255, 152, 152, 152)
+                  : const Color.fromARGB(255, 146, 146, 146),
+              inactiveTrackColor: AppColors.primaryBackground,
               splashRadius: 15,
               value: theme.isDarkMode,
               onChanged: (_) => theme.toggleTheme(),
@@ -461,23 +463,32 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
       return const SizedBox(height: 30);
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          _mergeDuplicates ? 'Merge Duplicates' : 'UnMerge Duplicates',
-          style: TextStyle(
-            fontSize: AppFontSizes.kBodyText,
-            color: AppColors.secondaryText,
+    return Consumer<ThemeProvider>(
+      builder: (context, theme, child) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            _mergeDuplicates ? 'Merge Duplicates' : 'UnMerge Duplicates',
+            style: TextStyle(
+              fontSize: AppFontSizes.kBodyText,
+              color: AppColors.secondaryText,
+            ),
           ),
-        ),
-        Switch(
-          hoverColor: const Color.fromARGB(139, 255, 255, 255),
-          splashRadius: 15,
-          value: _mergeDuplicates,
-          onChanged: (value) => _toggleMergeDuplicates(value),
-        ),
-      ],
+          Switch(
+            hoverColor: const Color.fromARGB(60, 214, 214, 214),
+            thumbColor: WidgetStateProperty.all(
+              theme.isDarkMode ? Colors.white : Colors.black,
+            ),
+            activeTrackColor: theme.isDarkMode
+                ? const Color.fromARGB(255, 152, 152, 152)
+                : const Color.fromARGB(255, 146, 146, 146),
+            inactiveTrackColor: AppColors.primaryBackground,
+            splashRadius: 15,
+            value: _mergeDuplicates,
+            onChanged: (value) => _toggleMergeDuplicates(value),
+          ),
+        ],
+      ),
     );
   }
 }

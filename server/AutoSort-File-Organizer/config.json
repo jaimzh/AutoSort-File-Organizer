@@ -47,6 +47,6 @@
   "wait_before_copy": 4,
   "verify_delay": 2,
   "mode": "safe",
-  "merge_duplicates": false,
-  "dark_mode": false
+  "merge_duplicates": true,
+  "dark_mode": true
 }
