@@ -308,5 +308,6 @@ app.get("")
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)
     
+# cd Autosort-File-Organizer
 # .\venv\Scripts\activate.bat
 # uvicorn main:app --reload --host 0.0.0.0 --port 8001

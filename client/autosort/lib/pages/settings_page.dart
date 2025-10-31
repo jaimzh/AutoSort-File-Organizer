@@ -70,7 +70,11 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.code, size: 22),
+                      icon: Icon(
+                        Icons.code,
+                        size: 22,
+                        color: AppColors.iconColor,
+                      ),
                       tooltip: "Edit Config",
                       onPressed: () => openConfigEditor(
                         context,
@@ -187,14 +191,22 @@ class _SettingsPageState extends State<SettingsPage> {
                   Navigator.pop(dialogContext);
 
                   ScaffoldMessenger.of(dialogContext).showSnackBar(
-                    const SnackBar(
-                      content: Text("✅ Configuration updated successfully!"),
+                    SnackBar(
+                      content: Text(
+                        "✅ Configuration updated successfully!",
+                        style: TextStyle(color: AppColors.primaryText),
+                      ),
+                      backgroundColor: AppColors.primaryBackground,
                     ),
                   );
                 } else {
                   ScaffoldMessenger.of(dialogContext).showSnackBar(
-                    const SnackBar(
-                      content: Text("❌ Failed to update config on backend"),
+                    SnackBar(
+                      content: Text(
+                        "❌ Failed to update config on backend",
+                        style: TextStyle(color: AppColors.primaryText),
+                      ),
+                      backgroundColor: AppColors.primaryBackground,
                     ),
                   );
                 }
@@ -208,93 +220,6 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ThemeSwitch extends StatelessWidget {
-  const ThemeSwitch({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, theme, child) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              theme.isDarkMode ? 'Dark Mode' : 'Light mode',
-              style: TextStyle(
-                fontSize: AppFontSizes.kBodyText,
-                color: AppColors.secondaryText,
-              ),
-            ),
-            Switch(
-              hoverColor: const Color.fromARGB(139, 255, 255, 255),
-              splashRadius: 15,
-              value: theme.isDarkMode,
-              onChanged: (_) => theme.toggleTheme(),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class DuplicateSwitch extends StatefulWidget {
-  const DuplicateSwitch({super.key});
-
-  @override
-  State<DuplicateSwitch> createState() => _DuplicateSwitchState();
-}
-
-class _DuplicateSwitchState extends State<DuplicateSwitch> {
-  bool _mergeDuplicates = false;
-  bool _isLoading = true;
-
-  Future<void> _fetchMergeDuplicateSetting() async {
-    final config = await ApiService.getConfig();
-    if (config != null && config.containsKey('merge_duplicates')) {
-      _mergeDuplicates = config['merge_duplicates'];
-    }
-    setState(() => _isLoading = false);
-  }
-
-  Future<void> _toggleMergeDuplicates(bool newValue) async {
-    setState(() => _mergeDuplicates = newValue);
-    await ApiService.updateMergeDuplicates(newValue);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchMergeDuplicateSetting();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const SizedBox(height: 30);
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          _mergeDuplicates ? 'Merge Duplicates' : 'UnMerge Duplicates',
-          style: TextStyle(
-            fontSize: AppFontSizes.kBodyText,
-            color: AppColors.secondaryText,
-          ),
-        ),
-        Switch(
-          hoverColor: const Color.fromARGB(139, 255, 255, 255),
-          splashRadius: 15,
-          value: _mergeDuplicates,
-          onChanged: (value) => _toggleMergeDuplicates(value),
-        ),
-      ],
     );
   }
 }
@@ -461,6 +386,98 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
           ThemeSwitch(),
         ],
       ),
+    );
+  }
+}
+
+class ThemeSwitch extends StatelessWidget {
+  const ThemeSwitch({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeProvider>(
+      builder: (context, theme, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              theme.isDarkMode ? 'Dark Mode' : 'Light mode',
+              style: TextStyle(
+                fontSize: AppFontSizes.kBodyText,
+                color: AppColors.secondaryText,
+              ),
+            ),
+            Switch(
+              hoverColor: const Color.fromARGB(60, 214, 214, 214),
+              thumbColor: WidgetStateProperty.all(
+                theme.isDarkMode ? Colors.white : Colors.black,
+              ),
+              activeTrackColor: const Color.fromARGB(255, 30, 30, 30),
+              inactiveTrackColor: Colors.white,
+              splashRadius: 15,
+              value: theme.isDarkMode,
+              onChanged: (_) => theme.toggleTheme(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class DuplicateSwitch extends StatefulWidget {
+  const DuplicateSwitch({super.key});
+
+  @override
+  State<DuplicateSwitch> createState() => _DuplicateSwitchState();
+}
+
+class _DuplicateSwitchState extends State<DuplicateSwitch> {
+  bool _mergeDuplicates = false;
+  bool _isLoading = true;
+
+  Future<void> _fetchMergeDuplicateSetting() async {
+    final config = await ApiService.getConfig();
+    if (config != null && config.containsKey('merge_duplicates')) {
+      _mergeDuplicates = config['merge_duplicates'];
+    }
+    setState(() => _isLoading = false);
+  }
+
+  Future<void> _toggleMergeDuplicates(bool newValue) async {
+    setState(() => _mergeDuplicates = newValue);
+    await ApiService.updateMergeDuplicates(newValue);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchMergeDuplicateSetting();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const SizedBox(height: 30);
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          _mergeDuplicates ? 'Merge Duplicates' : 'UnMerge Duplicates',
+          style: TextStyle(
+            fontSize: AppFontSizes.kBodyText,
+            color: AppColors.secondaryText,
+          ),
+        ),
+        Switch(
+          hoverColor: const Color.fromARGB(139, 255, 255, 255),
+          splashRadius: 15,
+          value: _mergeDuplicates,
+          onChanged: (value) => _toggleMergeDuplicates(value),
+        ),
+      ],
     );
   }
 }
