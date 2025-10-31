@@ -12,45 +12,100 @@ class FilesSortedChart extends StatefulWidget {
 }
 
 class _FilesSortedChartState extends State<FilesSortedChart> {
-  late List<_ChartData> _chartData;
   late TooltipBehavior _tooltipBehavior;
+  List<_ChartData> _chartData = [];
+  bool _isLoading = true;
+  bool _isEmpty = false;
   int _explodeIndex = 0;
 
   @override
   void initState() {
     super.initState();
-
-    _chartData = [];
-
     _tooltipBehavior = TooltipBehavior(enable: true);
-
     _loadCounts();
   }
 
-  void _loadCounts() async {
+  Future<void> _loadCounts() async {
     final counts = await ApiService.getCounts();
-    if (counts != null) {
+
+    if (!mounted) return;
+
+    if (counts == null) {
+      // if API failed, you can still show empty state
       setState(() {
-        _chartData = counts.entries
-            .where(
-              (e) =>
-                  e.key.toLowerCase() != "total" && // ✅ skip "Total"
-                  (e.value ?? 0) > 0,
-            )
-            .map(
-              (e) => _ChartData(
-                e.key,
-                (e.value ?? 0).toDouble(),
-                e.value.toString(),
-              ),
-            )
-            .toList();
+        _isLoading = false;
+        _isEmpty = true;
       });
+      return;
     }
+
+    // check if literally everything is 0 like in your sample
+    final allZero = counts.values.every((v) => (v ?? 0) == 0);
+
+    // build chart data from non-zero items (excluding "Total")
+    final data = counts.entries
+        .where(
+          (e) =>
+              e.key.toLowerCase() != 'total' &&
+              (e.value ?? 0) > 0,
+        )
+        .map(
+          (e) => _ChartData(
+            e.key,
+            (e.value ?? 0).toDouble(),
+            e.value.toString(),
+          ),
+        )
+        .toList();
+
+    setState(() {
+      _isLoading = false;
+      _chartData = data;
+      _isEmpty = allZero || data.isEmpty;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_isEmpty) {
+      // your "replace entire chart with emoji or something" part
+      return Container(
+        padding: const EdgeInsets.symmetric(vertical: 24),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              '🗂️',
+              style: TextStyle(fontSize: 46),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'No files sorted yet',
+              style: TextStyle(
+                color: AppColors.primaryText,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Run a sort so I can actually draw a chart.',
+              style: TextStyle(
+                color: AppColors.secondaryText,
+                fontSize: 13,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      );
+    }
+
     return SfCircularChart(
       palette: AppColors.chartPalette,
       legend: Legend(
@@ -62,7 +117,7 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
       tooltipBehavior: _tooltipBehavior,
       series: <DoughnutSeries<_ChartData, String>>[
         DoughnutSeries<_ChartData, String>(
-          radius: '80%', // make chart fill more of its container
+          radius: '80%',
           innerRadius: '30%',
           dataSource: _chartData,
           xValueMapper: (_ChartData data, _) => data.label,
@@ -70,13 +125,12 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
           dataLabelMapper: (_ChartData data, _) => data.text,
           dataLabelSettings: DataLabelSettings(
             isVisible: true,
-            // color: const Color.fromARGB(0, 0, 0, 0),
             textStyle: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w900,
               color: AppColors.primaryText,
             ),
-            connectorLineSettings: ConnectorLineSettings(),
+            connectorLineSettings: const ConnectorLineSettings(),
           ),
           explode: true,
           explodeIndex: _explodeIndex,
