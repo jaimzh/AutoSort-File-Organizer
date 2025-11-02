@@ -302,7 +302,7 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
         children: [
           Row(
             children: [
-              Icon(LucideIcons.scroll, color: AppColors.primaryText),
+              Icon(LucideIcons.settings, color: AppColors.primaryText),
               const SizedBox(width: 10),
               Text(
                 'File Processing',
