@@ -352,6 +352,8 @@ class _RulesContainerState extends State<RulesContainer> {
                               actions: [
                                 CustomButton(
                                   text: 'Cancel',
+                                  textColor: AppColors.buttonText,
+                                  hoverColor: AppColors.buttonHover,
                                   onPressed: () => {
                                     Navigator.of(context).pop(false),
                                   },

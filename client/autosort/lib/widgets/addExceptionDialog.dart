@@ -80,7 +80,12 @@ class _AddExceptionDialogState extends State<AddExceptionDialog> {
       ),
 
       actions: [
-        CustomButton(text: 'Cancel', onPressed: () => {Navigator.pop(context)}),
+        CustomButton(
+          text: 'Cancel',
+          textColor: AppColors.buttonText,
+          hoverColor: AppColors.buttonHover,
+          onPressed: () => {Navigator.pop(context)},
+        ),
 
         CustomButton(
           text: 'Save',

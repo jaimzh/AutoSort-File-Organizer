@@ -70,8 +70,9 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
           children: [
             TextFormField(
               controller: _categoryController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: "Category",
+                labelStyle: TextStyle(color: AppColors.secondaryText),
                 hintText: "e.g. Documents",
               ),
               validator: (value) =>
@@ -82,8 +83,9 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
             // Extensions input
             TextFormField(
               controller: _extensionsController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: "Extensions",
+                labelStyle: TextStyle(color: AppColors.secondaryText),
                 hintText: "e.g. .pdf, .docx, .txt",
               ),
               validator: (value) => value == null || value.isEmpty
@@ -95,7 +97,12 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
       ),
 
       actions: [
-        CustomButton(text: 'Cancel', onPressed: () => {Navigator.pop(context)}),
+        CustomButton(
+          text: 'Cancel',
+          textColor: AppColors.buttonText,
+          hoverColor: AppColors.buttonHover,
+          onPressed: () => {Navigator.pop(context)},
+        ),
 
         CustomButton(
           text: 'Save',

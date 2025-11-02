@@ -26,10 +26,19 @@ class _DashboardPageState extends State<DashboardPage> {
     "Others",
   ];
 
+  late final ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     _loadCounts();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _loadCounts() async {
@@ -87,45 +96,55 @@ class _DashboardPageState extends State<DashboardPage> {
             height: 140, // must be >= FileCountCard height
             child: _counts.isEmpty
                 ? const Center(child: CircularProgressIndicator())
-                : ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: orderedKeys.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
-                    itemBuilder: (context, index) {
-                      final key = orderedKeys[index];
-                      final value = _counts[key] ?? 0;
+                : Scrollbar(
+                    controller: _scrollController,
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    radius: const Radius.circular(8),
+                    thickness: 6,
 
-                      // Map icons dynamically
-                      IconData icon;
-                      switch (key.toLowerCase()) {
-                        case "videos":
-                          icon = LucideIcons.video;
-                          break;
-                        case "images":
-                          icon = LucideIcons.image;
-                          break;
-                        case "documents":
-                          icon = LucideIcons.fileText;
-                          break;
-                        case "audio":
-                          icon = LucideIcons.music;
-                          break;
-                        case "archives":
-                          icon = LucideIcons.archive;
-                          break;
-                        case "total":
-                          icon = LucideIcons.layers;
-                          break;
-                        default:
-                          icon = LucideIcons.folder;
-                      }
+                    interactive: true,
+                    child: ListView.separated(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: orderedKeys.length,
+                      separatorBuilder: (_, __) => const SizedBox(width: 12),
+                      itemBuilder: (context, index) {
+                        final key = orderedKeys[index];
+                        final value = _counts[key] ?? 0;
 
-                      return FileCountCard(
-                        title: key,
-                        count: value,
-                        icon: icon,
-                      );
-                    },
+                        // Map icons dynamically
+                        IconData icon;
+                        switch (key.toLowerCase()) {
+                          case "videos":
+                            icon = LucideIcons.video;
+                            break;
+                          case "images":
+                            icon = LucideIcons.image;
+                            break;
+                          case "documents":
+                            icon = LucideIcons.fileText;
+                            break;
+                          case "audio":
+                            icon = LucideIcons.music;
+                            break;
+                          case "archives":
+                            icon = LucideIcons.archive;
+                            break;
+                          case "total":
+                            icon = LucideIcons.layers;
+                            break;
+                          default:
+                            icon = LucideIcons.folder;
+                        }
+
+                        return FileCountCard(
+                          title: key,
+                          count: value,
+                          icon: icon,
+                        );
+                      },
+                    ),
                   ),
           ),
         ],

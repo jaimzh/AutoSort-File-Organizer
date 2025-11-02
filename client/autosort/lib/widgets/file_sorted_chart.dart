@@ -1,6 +1,7 @@
 import 'package:autosort/services/api_service.dart';
 import 'package:autosort/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 /// Dashboard chart for "Files Sorted"
@@ -44,17 +45,10 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
 
     // build chart data from non-zero items (excluding "Total")
     final data = counts.entries
-        .where(
-          (e) =>
-              e.key.toLowerCase() != 'total' &&
-              (e.value ?? 0) > 0,
-        )
+        .where((e) => e.key.toLowerCase() != 'total' && (e.value ?? 0) > 0)
         .map(
-          (e) => _ChartData(
-            e.key,
-            (e.value ?? 0).toDouble(),
-            e.value.toString(),
-          ),
+          (e) =>
+              _ChartData(e.key, (e.value ?? 0).toDouble(), e.value.toString()),
         )
         .toList();
 
@@ -79,10 +73,12 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              '🗂️',
-              style: TextStyle(fontSize: 46),
+            Icon(
+              LucideIcons.chartPie,
+              size: 60,
+              color: AppColors.iconBackground,
             ),
+
             const SizedBox(height: 12),
             Text(
               'No files sorted yet',
@@ -95,10 +91,7 @@ class _FilesSortedChartState extends State<FilesSortedChart> {
             const SizedBox(height: 4),
             Text(
               'Run a sort so I can actually draw a chart.',
-              style: TextStyle(
-                color: AppColors.secondaryText,
-                fontSize: 13,
-              ),
+              style: TextStyle(color: AppColors.secondaryText, fontSize: 13),
               textAlign: TextAlign.center,
             ),
           ],

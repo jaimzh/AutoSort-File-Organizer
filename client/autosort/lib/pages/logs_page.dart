@@ -250,6 +250,7 @@ class LogsCard extends StatelessWidget {
                       final confirm = await showDialog<bool>(
                         context: context,
                         builder: (context) => AlertDialog(
+                          backgroundColor: AppColors.pageBackground,
                           constraints: BoxConstraints.tight(Size(300, 220)),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -261,6 +262,8 @@ class LogsCard extends StatelessWidget {
                           actions: [
                             CustomButton(
                               text: 'Cancel',
+                              textColor: AppColors.buttonText,
+                              hoverColor: AppColors.buttonHover,
                               onPressed: () => Navigator.of(context).pop(false),
                             ),
                             CustomButton(
@@ -288,7 +291,14 @@ class LogsCard extends StatelessWidget {
           const SizedBox(height: 10),
 
           entries.isEmpty
-              ? Expanded(child: const Center(child: Text("No logs available")))
+              ? Expanded(
+                  child: Center(
+                    child: Text(
+                      "No logs available",
+                      style: TextStyle(color: AppColors.primaryText),
+                    ),
+                  ),
+                )
               :
                 // Logs list
                 Expanded(

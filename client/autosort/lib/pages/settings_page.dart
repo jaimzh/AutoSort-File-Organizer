@@ -407,18 +407,21 @@ class ThemeSwitch extends StatelessWidget {
                 color: AppColors.secondaryText,
               ),
             ),
-            Switch(
-              hoverColor: const Color.fromARGB(60, 214, 214, 214),
-              thumbColor: WidgetStateProperty.all(
-                theme.isDarkMode ? Colors.white : Colors.black,
+            Transform.scale(
+              scale: .8,
+              child: Switch(
+                hoverColor: const Color.fromARGB(60, 214, 214, 214),
+                thumbColor: WidgetStateProperty.all(
+                  theme.isDarkMode ? Colors.white : Colors.black,
+                ),
+                activeTrackColor: theme.isDarkMode
+                    ? const Color.fromARGB(255, 36, 36, 36)
+                    : const Color.fromARGB(255, 197, 197, 197),
+                inactiveTrackColor: AppColors.primaryBackground,
+                splashRadius: 15,
+                value: theme.isDarkMode,
+                onChanged: (_) => theme.toggleTheme(),
               ),
-              activeTrackColor: theme.isDarkMode
-                  ? const Color.fromARGB(255, 152, 152, 152)
-                  : const Color.fromARGB(255, 146, 146, 146),
-              inactiveTrackColor: AppColors.primaryBackground,
-              splashRadius: 15,
-              value: theme.isDarkMode,
-              onChanged: (_) => theme.toggleTheme(),
             ),
           ],
         );
@@ -474,18 +477,22 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
               color: AppColors.secondaryText,
             ),
           ),
-          Switch(
-            hoverColor: const Color.fromARGB(60, 214, 214, 214),
-            thumbColor: WidgetStateProperty.all(
-              theme.isDarkMode ? Colors.white : Colors.black,
+          Transform.scale(
+            scale: .8,
+            child: Switch(
+              hoverColor: const Color.fromARGB(60, 214, 214, 214),
+              thumbColor: WidgetStateProperty.all(
+                theme.isDarkMode ? Colors.white : Colors.black,
+              ),
+
+              activeTrackColor: theme.isDarkMode
+                  ? const Color.fromARGB(255, 36, 36, 36)
+                  : const Color.fromARGB(255, 197, 197, 197),
+              inactiveTrackColor: AppColors.primaryBackground,
+              splashRadius: 15,
+              value: _mergeDuplicates,
+              onChanged: (value) => _toggleMergeDuplicates(value),
             ),
-            activeTrackColor: theme.isDarkMode
-                ? const Color.fromARGB(255, 152, 152, 152)
-                : const Color.fromARGB(255, 146, 146, 146),
-            inactiveTrackColor: AppColors.primaryBackground,
-            splashRadius: 15,
-            value: _mergeDuplicates,
-            onChanged: (value) => _toggleMergeDuplicates(value),
           ),
         ],
       ),
