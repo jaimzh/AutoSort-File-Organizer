@@ -223,6 +223,19 @@ class ApiService {
     }
   }
 
+
+  static Future<Map<String, dynamic>?> resetCounts() async {
+    final response = await http.put(Uri.parse("$baseUrl/counts/reset"));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      print("❌ Error resetting counts: ${response.body}");
+      return null;
+    }
+  }
+
+
+
   // ===== LOGS =====
   static Future<List<Map<String, dynamic>>?> getLogs() async {
     final response = await http.get(Uri.parse("$baseUrl/logs"));

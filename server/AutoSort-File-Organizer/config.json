@@ -48,5 +48,5 @@
   "verify_delay": 2,
   "mode": "fast",
   "merge_duplicates": true,
-  "dark_mode": true
+  "dark_mode": false
 }

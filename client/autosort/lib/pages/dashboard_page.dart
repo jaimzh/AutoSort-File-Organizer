@@ -1,4 +1,5 @@
 import 'package:autosort/services/api_service.dart';
+import 'package:autosort/widgets/custom_button.dart';
 import 'package:autosort/widgets/file_sorted_chart.dart';
 import 'package:autosort/widgets/recent_activity_card.dart';
 import 'package:flutter/material.dart';
@@ -197,6 +198,69 @@ class DashboardCard extends StatelessWidget {
                     fontSize: AppFontSizes.kBodyText,
                     color: AppColors.primaryText,
                   ),
+                ),
+                Spacer(),
+                //hook up the button here
+                IconButton(
+                  iconSize: 20,
+                  color: AppColors.iconColor,
+                  tooltip: "Reset counts",
+                  onPressed: () async {
+                    final confirm = await showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        backgroundColor: AppColors.pageBackground,
+                        constraints: BoxConstraints.tight(Size(300, 220)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+
+                        title: const Text('Reset Counts'),
+                        content: const Text(
+                          'Are you sure you want to reset all file counts to zero?',
+                        ),
+                        actions: [
+                          CustomButton(
+                            text: 'Cancel',
+                            textColor: AppColors.buttonText,
+                            hoverColor: AppColors.buttonHover,
+                            onPressed: () => Navigator.of(context).pop(false),
+                          ),
+                          CustomButton(
+                            text: 'Reset',
+                            onPressed: () => Navigator.of(context).pop(true),
+                            backgroundColor: AppColors.deleteBtn,
+                            hoverColor: AppColors.deleteBtnHover,
+                            textColor: AppColors.buttonText,
+                            borderColor: AppColors.deleteBtnHover,
+                          ),
+                        ],
+                      ),
+                    );
+
+                    if (confirm == true) {
+                      final result = await ApiService.resetCounts();
+
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              '✅ Lifetime counts reset successfully',
+                            ),
+                          ),
+                        );
+                        // Optional: refresh your counts here
+                        // e.g., context.read<CountsProvider>().fetchCounts();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('❌ Failed to reset lifetime counts'),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  icon: Icon(LucideIcons.trash),
                 ),
               ],
             ),
