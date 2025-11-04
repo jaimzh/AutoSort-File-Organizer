@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import uvicorn
 from autosort.core.autosort import AutoSort
 from autosort.core.config import ConfigManager
-from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs
+from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs, reset_lifetime_counts
 from fastapi import HTTPException
 
 
@@ -258,6 +258,16 @@ def get_counts():
     return get_lifetime_counts()
 
 
+@app.put("/counts/reset")
+def reset_lifetime_counts_endpoint():
+    """
+    Reset the lifetime_counts.json file to default zeros.
+    """
+    try:
+        new_counts = reset_lifetime_counts()
+        return {"message": "✅ Lifetime counts reset successfully", "counts": new_counts}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/config/dark_mode")

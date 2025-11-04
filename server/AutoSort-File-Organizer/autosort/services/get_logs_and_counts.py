@@ -48,6 +48,35 @@ def get_lifetime_counts() -> dict:
     return _read_json(os.path.join(COUNTS_DIR, LIFETIME_COUNTS))
 
 
+
+def reset_lifetime_counts() -> dict:
+    default_counts = {
+        "Total": 0,
+        "Videos": 0,
+        "Images": 0,
+        "Documents": 0,
+        "Audio": 0,
+        "Archives": 0,
+        "Others": 0,
+        "Subtitles": 0,
+    }
+
+    file_path = os.path.join(COUNTS_DIR, LIFETIME_COUNTS)
+    try:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(default_counts, f, indent=4)
+    except OSError as e:
+        print(f"Error writing lifetime counts: {e}")
+        return {}
+
+    return default_counts
+
+
+
+
+
+
+
 def get_session_counts() -> dict:
     """Return the contents of session_counts.json as dict."""
     return _read_json(os.path.join(LOGS_DIR, SESSION_COUNTS))
