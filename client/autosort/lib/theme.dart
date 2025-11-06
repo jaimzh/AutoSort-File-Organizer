@@ -10,6 +10,7 @@ class AppColors {
   static late Color cardBackground;
   static late Color cardBorder;
   static late Color cardShadow;
+  static late Color cardHover;
 
   // background colors
   static late Color primaryBackground;
@@ -34,6 +35,7 @@ class AppColors {
       cardBackground = const Color.fromARGB(0, 10, 10, 10); // dark card
       cardBorder = const Color.fromARGB(80, 255, 255, 255);
       cardShadow = const Color.fromARGB(59, 0, 0, 0);
+      cardHover = const Color.fromARGB(38, 162, 162, 162);
 
       primaryBackground = const Color(0xFF121212);
       // dark gray background
@@ -50,9 +52,10 @@ class AppColors {
       //  Light Mode
       pageBackground = const Color(0xFFFCFCFC);
       primaryText = const Color(0xFF212121);
-      secondaryText = const Color(0xFF757575);
+      secondaryText = const Color.fromARGB(255, 81, 81, 81);
 
       cardBackground = Colors.white;
+      cardHover = const Color.fromARGB(0, 0, 0, 0);
       cardBorder = const Color.fromARGB(67, 0, 0, 0);
       cardShadow = const Color.fromARGB(28, 0, 0, 0);
 
@@ -64,13 +67,12 @@ class AppColors {
       buttonBackground = Colors.black;
       buttonText = Colors.white;
       buttonHover = const Color.fromARGB(255, 20, 20, 20);
+
       divider = const Color(0xFFBDBDBD);
 
       pill = Colors.grey.shade200;
     }
   }
-
-
 
   //semantic colors
   static const Color deleteBtn = Colors.red;

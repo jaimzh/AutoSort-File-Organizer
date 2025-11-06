@@ -222,6 +222,7 @@ class DashboardCard extends StatelessWidget {
                         actions: [
                           CustomButton(
                             text: 'Cancel',
+                            backgroundColor: AppColors.buttonBackground,
                             textColor: AppColors.buttonText,
                             hoverColor: AppColors.buttonHover,
                             onPressed: () => Navigator.of(context).pop(false),
@@ -249,8 +250,11 @@ class DashboardCard extends StatelessWidget {
                             ),
                           ),
                         );
-                        // Optional: refresh your counts here
-                        // e.g., context.read<CountsProvider>().fetchCounts();
+                        // 🔥 Force refresh after reset
+                        // Call parent dashboard’s reload method
+                        final state = context
+                            .findAncestorStateOfType<_DashboardPageState>();
+                        state?._loadCounts();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

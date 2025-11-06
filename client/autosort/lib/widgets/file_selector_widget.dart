@@ -141,8 +141,9 @@ class _FolderPickerWidgetState extends State<FolderPickerWidget> {
         CustomButton(
           text: "Browse",
           onPressed: _pickFolder,
-
-          hoverColor: AppColors.buttonHover,
+          backgroundColor: AppColors.cardBackground,
+          hoverColor: AppColors.cardHover,
+          textColor: AppColors.primaryText,
         ),
       ],
     );

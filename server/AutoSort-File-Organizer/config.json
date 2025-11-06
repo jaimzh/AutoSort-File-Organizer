@@ -1,6 +1,6 @@
 {
-  "source_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
-  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
+  "source_folder": "C:\\Users\\Jaimz\\Downloads",
+  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\downloads autosorted",
   "rules": {
     "Videos": [
       ".mp4",
