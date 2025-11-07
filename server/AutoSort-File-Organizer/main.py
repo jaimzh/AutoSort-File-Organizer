@@ -6,11 +6,12 @@ from autosort.core.config import ConfigManager
 from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs, reset_lifetime_counts
 from fastapi import HTTPException
 
-from routes import config_router, scan_router
+from routes import config_router, scan_router, monitor_router
 app = FastAPI(title="AutoSort API", version="1.0.0")
 
 app.include_router(config_router)
 app.include_router(scan_router)
+app.include_router(monitor_router)
  
 @app.get("/")
 def read_root():
@@ -26,16 +27,6 @@ def health():
    
     
 
-
-@app.post("/monitor/start")
-def start_monitor():
-    autosort.start_monitor()
-    return {"message": "Monitoring started"}
-
-@app.post("/monitor/stop")
-def stop_monitor():
-    autosort.stop_monitor()
-    return {"message": "Monitoring stopped"}
 
 #used in dashboard, recent activity part and logs page
 @app.get("/logs")
