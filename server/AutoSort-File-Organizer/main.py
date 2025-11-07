@@ -6,12 +6,14 @@ from autosort.core.config import ConfigManager
 from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs, reset_lifetime_counts
 from fastapi import HTTPException
 
-from routes import config_router, scan_router, monitor_router
+from routes import config_router, scan_router, monitor_router, counts_router, logs_router
 app = FastAPI(title="AutoSort API", version="1.0.0")
 
 app.include_router(config_router)
 app.include_router(scan_router)
 app.include_router(monitor_router)
+app.include_router(counts_router)
+app.include_router(logs_router)
  
 @app.get("/")
 def read_root():
@@ -23,45 +25,9 @@ def health():
     return {"status": "ok"}
 
 
-    
-# TODO: log, counts routes
 # TODO: documentation for server
 
 
-
-#used in dashboard, recent activity part and logs page
-@app.get("/logs")
-def get_logss():
-    return {"logs": read_logs_file()}
-
-
-@app.delete("/logs/clear")
-def clear_logs_endpoint():
-    clear_logs()
-    return {"message": "Logs and session counts cleared"}
-
-
-
-#used in dashboard page
-@app.get("/counts")
-def get_counts():
-    return get_lifetime_counts()
-
-
-@app.put("/counts/reset")
-def reset_lifetime_counts_endpoint():
-    """
-    Reset the lifetime_counts.json file to default zeros.
-    """
-    try:
-        new_counts = reset_lifetime_counts()
-        return {"message": "✅ Lifetime counts reset successfully", "counts": new_counts}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-
-app.get("")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)
