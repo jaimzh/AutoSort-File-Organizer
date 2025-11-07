@@ -24,8 +24,9 @@ def health():
 
 
     
-   
-    
+# TODO: log, counts routes
+# TODO: documentation for server
+
 
 
 #used in dashboard, recent activity part and logs page
