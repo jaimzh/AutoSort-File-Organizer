@@ -6,10 +6,11 @@ from autosort.core.config import ConfigManager
 from autosort.services.get_logs_and_counts import get_scan_logs, get_monitor_logs, get_lifetime_counts, read_logs_file, clear_logs, reset_lifetime_counts
 from fastapi import HTTPException
 
-from routes import config_router
+from routes import config_router, scan_router
 app = FastAPI(title="AutoSort API", version="1.0.0")
 
 app.include_router(config_router)
+app.include_router(scan_router)
  
 @app.get("/")
 def read_root():
@@ -24,17 +25,7 @@ def health():
     
    
     
-#used in autosort page
-@app.post("/scan/start")
-def scan_folder():
-    autosort.scan_now()
-    return {"message": "Manual scan completed"}
-    
 
-@app.post("/scan/stop")
-def stop_scan():
-    autosort.stop_scan()
-    return {"message": "Scan stop requested"}
 
 @app.post("/monitor/start")
 def start_monitor():
