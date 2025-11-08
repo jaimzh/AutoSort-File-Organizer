@@ -68,34 +68,35 @@ def lifetime_counter_get(rules):
     return _load_counts(LIFETIME_FILE, rules)
 
 
+# TODO: code clean up and review of the commented sections
 # ----------------------------
 # Session Counter (scans folders to build counts)
 # ----------------------------
-def session_counter_recount(destination_folder, rules):
-    """
-    Scan all destination folders and rebuild session_counts.json.
-    Reflects the actual current state of files on disk.
-    """
-    counts = {"Total": 0}
-    for category in rules.keys():
-        category_path = os.path.join(destination_folder, category)
-        if os.path.exists(category_path):
-            file_count = len([
-                f for f in os.listdir(category_path)
-                if os.path.isfile(os.path.join(category_path, f))
-            ])
-        else:
-            file_count = 0
-        counts[category] = file_count
-        counts["Total"] += file_count
+# def session_counter_recount(destination_folder, rules):
+#     """
+#     Scan all destination folders and rebuild session_counts.json.
+#     Reflects the actual current state of files on disk.
+#     """
+#     counts = {"Total": 0}
+#     for category in rules.keys():
+#         category_path = os.path.join(destination_folder, category)
+#         if os.path.exists(category_path):
+#             file_count = len([
+#                 f for f in os.listdir(category_path)
+#                 if os.path.isfile(os.path.join(category_path, f))
+#             ])
+#         else:
+#             file_count = 0
+#         counts[category] = file_count
+#         counts["Total"] += file_count
 
-    _save_counts(SESSION_FILE, counts)
-    return counts
+#     _save_counts(SESSION_FILE, counts)
+#     return counts
 
 
-def session_counter_get(rules):
-    """Read the last saved session snapshot from session_counts.json."""
-    return _load_counts(SESSION_FILE, rules)
+# def session_counter_get(rules):
+#     """Read the last saved session snapshot from session_counts.json."""
+#     return _load_counts(SESSION_FILE, rules)
 
 
 # ----------------------------

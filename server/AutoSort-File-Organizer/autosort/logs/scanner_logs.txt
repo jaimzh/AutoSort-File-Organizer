@@ -1,5 +1,0 @@
-{"type": "scan", "action": "started", "message": "Scan started: watching C:\\Users\\Jaimz\\Downloads\\testfolder folder", "status": "success", "file": null, "timestamp": "2025-09-22T21:44:55.700374"}
-{"type": "scan", "action": "moved", "message": "\u26a1 Moved: Gemini_Generated_Image_b49xunb49xunb49x (2) (2).png \u2192 Gemini_Generated_Image_b49xunb49xunb49x (2) (2)-(1).png", "status": "success", "file": {"name": "Gemini_Generated_Image_b49xunb49xunb49x (2) (2).png", "category": "Images"}, "timestamp": "2025-09-22T21:44:55.705005"}
-{"type": "scan", "action": "completed", "message": "Scan completed successfully.", "status": "success", "file": null, "timestamp": "2025-09-22T21:44:55.709395"}
-{"type": "monitor", "action": "started", "message": "Monitor started: watching C:\\Users\\Jaimz\\Downloads\\testfolder folder", "status": "success", "file": null, "timestamp": "2025-09-22T21:45:34.942214"}
-{"type": "monitor", "action": "stopped", "message": "Monitor stopped.", "status": "success", "file": null, "timestamp": "2025-09-22T21:45:34.946338"}

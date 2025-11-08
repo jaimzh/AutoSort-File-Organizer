@@ -53,14 +53,6 @@ def safe_move(src_path, dest_folder, merge_duplicates=True, wait_before_copy=5, 
     except Exception as e:
         return src_path, f"❌ Error handling {original_filename}: {e}"
 
-def get_category_for_extension(ext, rules):
-    """Return the matching category for an extension, or 'Others' if none match."""
-    ext = ext.lower()
-    for category, extensions in rules.items():
-        if ext in [e.lower() for e in extensions]:
-            return category
-    return "Others"
-
 def fast_move(src_path, dest_folder, merge_duplicates=True):
     """Quickly move a file without safety checks (faster but less reliable)."""
     ensure_folder(dest_folder)
@@ -80,7 +72,13 @@ def fast_move(src_path, dest_folder, merge_duplicates=True):
     except Exception as e:
         return src_path, f"❌ Error moving {original_filename}: {e}"
     
-
+def get_category_for_extension(ext, rules):
+    """Return the matching category for an extension, or 'Others' if none match."""
+    ext = ext.lower()
+    for category, extensions in rules.items():
+        if ext in [e.lower() for e in extensions]:
+            return category
+    return "Others"
 
 
 def wait_until_stable(file_path, timeout=5, check_interval=0.2):
