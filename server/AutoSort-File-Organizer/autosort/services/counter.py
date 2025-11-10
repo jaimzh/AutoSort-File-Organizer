@@ -7,10 +7,7 @@ LIFETIME_FILE = "lifetime_counts.json"
 SESSION_FILE = "session_counts.json"
 
 
-# ----------------------------
-# JSON persistence helpers
-# ----------------------------
-# In counter.py
+
 
 def _load_counts(file_path, rules):
     """Load counts from a JSON file, or initialize fresh counts with 0s."""
@@ -45,9 +42,7 @@ def _save_counts(file_path, counts):
         json.dump(counts, f, indent=4)
 
 
-# ----------------------------
-# Lifetime Counter (updates JSON values directly)
-# ----------------------------
+
 def lifetime_counter_update(category, rules):
     """
     Update lifetime counter when a file is moved.
@@ -68,51 +63,3 @@ def lifetime_counter_get(rules):
     return _load_counts(LIFETIME_FILE, rules)
 
 
-# TODO: code clean up and review of the commented sections
-# ----------------------------
-# Session Counter (scans folders to build counts)
-# ----------------------------
-# def session_counter_recount(destination_folder, rules):
-#     """
-#     Scan all destination folders and rebuild session_counts.json.
-#     Reflects the actual current state of files on disk.
-#     """
-#     counts = {"Total": 0}
-#     for category in rules.keys():
-#         category_path = os.path.join(destination_folder, category)
-#         if os.path.exists(category_path):
-#             file_count = len([
-#                 f for f in os.listdir(category_path)
-#                 if os.path.isfile(os.path.join(category_path, f))
-#             ])
-#         else:
-#             file_count = 0
-#         counts[category] = file_count
-#         counts["Total"] += file_count
-
-#     _save_counts(SESSION_FILE, counts)
-#     return counts
-
-
-# def session_counter_get(rules):
-#     """Read the last saved session snapshot from session_counts.json."""
-#     return _load_counts(SESSION_FILE, rules)
-
-
-# ----------------------------
-# Example standalone usage
-# ----------------------------
-if __name__ == "__main__":
-    config = ConfigManager("config.json")
-    dest = config.get("destination_folder")
-    rules = config.get("rules", {})
-
-    # Lifetime counter demo
-    print("📈 Updating lifetime counter...")
-    updated = lifetime_counter_update("Videos", rules)
-    print("Lifetime counts:", updated)
-
-    # Session counter demo
-    print("📊 Recounting session counter...")
-    snapshot = session_counter_recount(dest, rules)
-    print("Session counts:", snapshot)
