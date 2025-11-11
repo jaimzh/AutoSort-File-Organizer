@@ -107,6 +107,3 @@ class FileHandler(FileSystemEventHandler):
             lifetime_counter_update(category, self.rules)
             self.processed_files.add(original_file_path)
 
-# 🛑 This function is no longer needed. The Autosort class now handles the observer's lifecycle.
-# def start_monitoring(stop_flag=None):
-#    ... (rest of the old function)
