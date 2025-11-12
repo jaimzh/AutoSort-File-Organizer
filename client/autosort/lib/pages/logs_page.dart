@@ -255,9 +255,13 @@ class LogsCard extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          title: const Text('Clear Logs'),
-                          content: const Text(
+                          title: Text(
+                            'Clear Logs',
+                            style: TextStyle(color: AppColors.primaryText),
+                          ),
+                          content: Text(
                             'Are you sure you want to clear all logs?',
+                            style: TextStyle(color: AppColors.secondaryText),
                           ),
                           actions: [
                             CustomButton(

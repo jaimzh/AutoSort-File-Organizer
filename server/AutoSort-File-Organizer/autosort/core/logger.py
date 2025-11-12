@@ -3,7 +3,7 @@ import json
 import threading
 from datetime import datetime
 
-# Path to your logs folder
+
 LOGS_DIR = os.path.join(os.path.dirname(__file__), "..", "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)  
 

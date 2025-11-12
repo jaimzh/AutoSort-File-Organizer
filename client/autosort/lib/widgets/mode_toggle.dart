@@ -44,9 +44,9 @@ class _ModeToggleState extends State<ModeToggle> {
         Expanded(
           child: Text(
             _isSafeMode
-                ? 'Safe mode with extra verification'
-                : 'Fast mode for quick processing',
-            style:  TextStyle(
+                ? 'Safe Mode: Copies and verifies files, but slower (best for monitoring)'
+                : 'Fast Mode: Moves instantly, but no verification (best for scanning)',
+            style: TextStyle(
               fontSize: AppFontSizes.kBodyText,
               color: AppColors.secondaryText,
             ),

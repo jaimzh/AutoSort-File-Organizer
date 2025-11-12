@@ -215,9 +215,13 @@ class DashboardCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
 
-                        title: const Text('Reset Counts'),
-                        content: const Text(
+                        title: Text(
+                          'Reset Counts',
+                          style: TextStyle(color: AppColors.primaryText),
+                        ),
+                        content: Text(
                           'Are you sure you want to reset all file counts to zero?',
+                          style: TextStyle(color: AppColors.secondaryText),
                         ),
                         actions: [
                           CustomButton(

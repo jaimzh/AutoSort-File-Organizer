@@ -3,7 +3,7 @@ from autosort_instance import autosort
 
 router = APIRouter(prefix="/scan", tags=["Scan"])
 
-@router.post("/scan/start")
+@router.post("/start")
 def scan_folder():
     try:
         autosort.scan_now()
@@ -14,7 +14,7 @@ def scan_folder():
     
     
 
-@router.post("/scan/stop")
+@router.post("/stop")
 def stop_scan():
     try:
         autosort.stop_scan()

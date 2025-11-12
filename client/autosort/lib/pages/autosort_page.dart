@@ -101,7 +101,7 @@ class FileConfigCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'Choose the folders where AutoSort will work',
+            'Select what folder to automatically Sort and where to send the sorted files to.',
             style: TextStyle(
               color: AppColors.secondaryText,
               fontSize: AppFontSizes.kBodyText,
