@@ -172,7 +172,7 @@ class DashboardCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.content,
-    this.icon = LucideIcons.folderOpen,
+    this.icon = LucideIcons.chartPie,
   });
 
   @override

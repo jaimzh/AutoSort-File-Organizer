@@ -258,7 +258,7 @@ class _RulesContainerState extends State<RulesContainer> {
             children: [
               Row(
                 children: [
-                  Icon(LucideIcons.scroll, color: AppColors.iconColor),
+                  Icon(LucideIcons.folder, color: AppColors.iconColor),
                   SizedBox(width: 10),
                   Text(
                     "Folder Rules",

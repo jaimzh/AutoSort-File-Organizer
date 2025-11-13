@@ -310,10 +310,10 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
         children: [
           Row(
             children: [
-              Icon(LucideIcons.settings, color: AppColors.primaryText),
+              Icon(LucideIcons.folderOpenDot, color: AppColors.primaryText),
               const SizedBox(width: 10),
               Text(
-                'File Processing',
+                'File Handling',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: AppFontSizes.kBodyText,
@@ -397,10 +397,10 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
           SizedBox(height: 20),
           Row(
             children: [
-              Icon(LucideIcons.settings, color: AppColors.primaryText),
+              Icon(LucideIcons.paintbrush, color: AppColors.primaryText),
               const SizedBox(width: 10),
               Text(
-                'Customize how AutoSort looks.',
+                'Appearance',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: AppFontSizes.kBodyText,
@@ -438,7 +438,8 @@ class ThemeSwitch extends StatelessWidget {
               theme.isDarkMode ? 'Dark Mode' : 'Light mode',
               style: TextStyle(
                 fontSize: AppFontSizes.kBodyText,
-                color: AppColors.secondaryText,
+                color: AppColors.primaryText,
+                fontWeight: FontWeight.bold,
               ),
             ),
             Transform.scale(
