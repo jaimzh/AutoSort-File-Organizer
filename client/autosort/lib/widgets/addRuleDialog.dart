@@ -55,13 +55,12 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      
       backgroundColor: AppColors.pageBackground,
       constraints: BoxConstraints.tight(Size(400, 300)),
-      
+
       shape: RoundedRectangleBorder(
+        side: BorderSide(color: AppColors.cardBorder, width: 1),
         borderRadius: BorderRadiusGeometry.circular(10),
-        
       ),
       title: Text(
         "Add New Rule",
@@ -76,6 +75,7 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              cursorColor: AppColors.primaryText,
               controller: _categoryController,
               style: TextStyle(color: AppColors.primaryText),
 
@@ -93,6 +93,7 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
             // Extensions input
             TextFormField(
               controller: _extensionsController,
+              cursorColor: AppColors.primaryText,
               style: TextStyle(color: AppColors.primaryText),
               decoration: InputDecoration(
                 labelText: "Extensions",

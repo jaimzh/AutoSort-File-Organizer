@@ -44,7 +44,7 @@ class AutosortPage extends StatelessWidget {
             const SizedBox(height: 20),
             SizedBox(
               height: 400,
-              child: const FileConfigCard(title: 'Folder Configuration'),
+              child: const FileConfigCard(title: 'Folder Setup'),
             ),
             const SizedBox(height: 20),
             Row(

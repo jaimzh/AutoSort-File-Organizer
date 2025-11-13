@@ -75,6 +75,14 @@ class _DashboardPageState extends State<DashboardPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            'Overview of your sorting activity and file stats.',
+            style: TextStyle(
+              fontSize: AppFontSizes.kBodyText,
+              color: AppColors.secondaryText,
+            ),
+          ),
           const SizedBox(height: 20),
 
           // Top cards row

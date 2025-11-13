@@ -33,6 +33,15 @@ class _RulesPageState extends State<RulesPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: 8),
+          Text(
+            'Define how AutoSort should organize your files by category and file type.',
+            style: TextStyle(
+              fontSize: AppFontSizes.kBodyText,
+              color: AppColors.secondaryText,
+            ),
+          ),
+
           SizedBox(height: 20),
           Expanded(child: RulesContainer()),
           SizedBox(height: 20),
@@ -304,7 +313,8 @@ class _RulesContainerState extends State<RulesContainer> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+
+          const SizedBox(height: 10),
 
           Expanded(
             child: FutureBuilder<List<dynamic>>(

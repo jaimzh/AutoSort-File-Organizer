@@ -82,6 +82,14 @@ class _LogsPageState extends State<LogsPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            'View recent sorting actions, scans, and monitor activity in one place.',
+            style: TextStyle(
+              fontSize: AppFontSizes.kBodyText,
+              color: AppColors.secondaryText,
+            ),
+          ),
           const SizedBox(height: 20),
 
           // Filter row

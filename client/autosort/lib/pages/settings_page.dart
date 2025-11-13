@@ -84,6 +84,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 8),
+                Text(
+                  'Fine-tune how AutoSort works — from timing to appearance.',
+                  style: TextStyle(
+                    color: AppColors.secondaryText,
+                    fontSize: AppFontSizes.kBodyText,
+                  ),
+                ),
                 const SizedBox(height: 20),
 
                 FileProcessingCard(),
@@ -314,10 +322,10 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
 
           Text(
-            'Configure how long the system waits before copying files.',
+            'Control how AutoSort handles file transfers, verification, and duplicates.',
             style: TextStyle(color: AppColors.secondaryText),
           ),
           const SizedBox(height: 20),
@@ -329,7 +337,8 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
                 'Wait Before Copy (seconds)',
                 style: TextStyle(
                   fontSize: AppFontSizes.kBodyText,
-                  color: AppColors.secondaryText,
+                  color: AppColors.primaryText,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
@@ -359,7 +368,8 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
                 'Verify copy (seconds)',
                 style: TextStyle(
                   fontSize: AppFontSizes.kBodyText,
-                  color: AppColors.secondaryText,
+                  color: AppColors.primaryText,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
@@ -379,10 +389,34 @@ class _FileProcessingCardState extends State<FileProcessingCard> {
               ),
             ],
           ),
-          Divider(color: AppColors.secondaryText),
+
           const SizedBox(height: 20),
           DuplicateSwitch(),
           SizedBox(height: 20),
+          Divider(color: AppColors.secondaryText),
+          SizedBox(height: 20),
+          Row(
+            children: [
+              Icon(LucideIcons.settings, color: AppColors.primaryText),
+              const SizedBox(width: 10),
+              Text(
+                'Customize how AutoSort looks.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: AppFontSizes.kBodyText,
+                  color: AppColors.primaryText,
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 8),
+
+          Text(
+            'Customize how AutoSort looks.',
+            style: TextStyle(color: AppColors.secondaryText),
+          ),
+          const SizedBox(height: 20),
           ThemeSwitch(),
         ],
       ),
@@ -471,10 +505,12 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            _mergeDuplicates ? 'Merge Duplicates' : 'UnMerge Duplicates',
+            _mergeDuplicates ? 'Merge duplicates' : 'Keep duplicates separate',
             style: TextStyle(
               fontSize: AppFontSizes.kBodyText,
-              color: AppColors.secondaryText,
+
+              color: AppColors.primaryText,
+              fontWeight: FontWeight.bold,
             ),
           ),
           Transform.scale(
