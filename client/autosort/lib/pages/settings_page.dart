@@ -487,7 +487,7 @@ class _DuplicateSwitchState extends State<DuplicateSwitch> {
 
               activeTrackColor: theme.isDarkMode
                   ? const Color.fromARGB(255, 36, 36, 36)
-                  : const Color.fromARGB(255, 197, 197, 197),
+                  : const Color.fromARGB(255, 230, 230, 230),
               inactiveTrackColor: AppColors.primaryBackground,
               splashRadius: 15,
               value: _mergeDuplicates,

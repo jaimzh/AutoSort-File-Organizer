@@ -35,7 +35,7 @@ class AutosortPage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Automatically organize your files with just a few clicks',
+              'The neat freak your computer needs :)',
               style: TextStyle(
                 fontSize: AppFontSizes.kBodyText,
                 color: AppColors.secondaryText,

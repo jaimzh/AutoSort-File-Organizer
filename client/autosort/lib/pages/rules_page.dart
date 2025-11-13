@@ -171,7 +171,7 @@ class _ExceptionsContainerState extends State<ExceptionsContainer> {
   void _showAddExceptionDialog(List<String> initialExtensions) {
     showDialog(
       context: context,
-      barrierColor: const Color.fromARGB(47, 255, 255, 255),
+      barrierColor: AppColors.barrierColor,
       builder: (context) {
         return AddExceptionDialog(
           initialExtensions: initialExtensions,
@@ -277,6 +277,7 @@ class _RulesContainerState extends State<RulesContainer> {
                     tooltip: "Add Rule",
                     onPressed: () async {
                       showDialog(
+                        barrierColor: AppColors.barrierColor,
                         context: context,
                         builder: (context) {
                           return AddRuleDialog(
@@ -340,6 +341,7 @@ class _RulesContainerState extends State<RulesContainer> {
                         rule: rule,
                         onDelete: () async {
                           final confirm = await showDialog(
+                            barrierColor: AppColors.barrierColor,
                             context: context,
                             builder: (context) => AlertDialog(
                               backgroundColor: AppColors.pageBackground,
@@ -392,6 +394,7 @@ class _RulesContainerState extends State<RulesContainer> {
 
                         onEdit: () {
                           showDialog(
+                            barrierColor: AppColors.barrierColor,
                             context: context,
                             builder: (context) {
                               return AddRuleDialog(

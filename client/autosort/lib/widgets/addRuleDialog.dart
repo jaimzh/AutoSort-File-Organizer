@@ -55,10 +55,13 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      
       backgroundColor: AppColors.pageBackground,
       constraints: BoxConstraints.tight(Size(400, 300)),
+      
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(10),
+        
       ),
       title: Text(
         "Add New Rule",
@@ -108,6 +111,7 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
       actions: [
         CustomButton(
           text: 'Cancel',
+          backgroundColor: AppColors.buttonBackground,
           textColor: AppColors.buttonText,
           hoverColor: AppColors.buttonHover,
           onPressed: () => {Navigator.pop(context)},
