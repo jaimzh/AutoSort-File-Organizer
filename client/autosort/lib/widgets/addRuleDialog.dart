@@ -55,13 +55,17 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.pageBackground,
       constraints: BoxConstraints.tight(Size(400, 300)),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(10),
       ),
       title: Text(
         "Add New Rule",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppColors.primaryText,
+        ),
       ),
       content: Form(
         key: _formKey,
@@ -70,10 +74,13 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
           children: [
             TextFormField(
               controller: _categoryController,
+              style: TextStyle(color: AppColors.primaryText),
+
               decoration: InputDecoration(
                 labelText: "Category",
                 labelStyle: TextStyle(color: AppColors.secondaryText),
                 hintText: "e.g. Documents",
+                hintStyle: TextStyle(color: AppColors.secondaryText),
               ),
               validator: (value) =>
                   value == null || value.isEmpty ? "Enter a category" : null,
@@ -83,10 +90,12 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
             // Extensions input
             TextFormField(
               controller: _extensionsController,
+              style: TextStyle(color: AppColors.primaryText),
               decoration: InputDecoration(
                 labelText: "Extensions",
                 labelStyle: TextStyle(color: AppColors.secondaryText),
                 hintText: "e.g. .pdf, .docx, .txt",
+                hintStyle: TextStyle(color: AppColors.secondaryText),
               ),
               validator: (value) => value == null || value.isEmpty
                   ? "Enter at least one extension"

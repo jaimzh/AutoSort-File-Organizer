@@ -26,8 +26,8 @@ class _MonitorCardState extends State<MonitorCard> {
     final isMonitoring = ApiService.isMonitoring;
     return Expanded(
       child: ButtonCard(
-        title: 'Monitor Folder',
-        text: 'Watch folder for new files continuously',
+        title: 'Live Monitoring',
+        text: 'Continuously watch and sort files.',
         icon: LucideIcons.eye,
         buttonText: isMonitoring ? "Stop Monitoring" : "Start Monitoring",
         buttonColor: isMonitoring ? Colors.red : AppColors.buttonBackground,

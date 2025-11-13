@@ -17,15 +17,13 @@ class _ScanCardState extends State<ScanCard> {
 
   void toggleScanning() async {
     if (!isScanning) {
-      // ✅ Start scanning
       setState(() {
         isScanning = true;
       });
 
       try {
-        await ApiService.startScan(); // wait until scan is done
+        await ApiService.startScan();
       } finally {
-        // ✅ Reset when done
         if (mounted) {
           setState(() {
             isScanning = false;
@@ -34,7 +32,6 @@ class _ScanCardState extends State<ScanCard> {
         }
       }
     } else {
-      // ✅ Stop scan manually
       ApiService.stopScan();
       setState(() {
         isScanning = false;
@@ -46,9 +43,9 @@ class _ScanCardState extends State<ScanCard> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ButtonCard(
-        title: 'Sort Now',
-        text: 'Sort all the files in the source folder.',
-        icon: LucideIcons.flame,
+        title: 'One-Time Sort',
+        text: 'Instantly scan and organize files.',
+        icon: LucideIcons.sparkles,
 
         buttonText: isScanning ? "Stop Scan" : "Scan Now",
         buttonColor: isScanning ? Colors.red : AppColors.buttonBackground,
