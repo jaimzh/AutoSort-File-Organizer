@@ -171,6 +171,7 @@ class _ExceptionsContainerState extends State<ExceptionsContainer> {
   void _showAddExceptionDialog(List<String> initialExtensions) {
     showDialog(
       context: context,
+      barrierColor: const Color.fromARGB(47, 255, 255, 255),
       builder: (context) {
         return AddExceptionDialog(
           initialExtensions: initialExtensions,
@@ -341,13 +342,20 @@ class _RulesContainerState extends State<RulesContainer> {
                           final confirm = await showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
+                              backgroundColor: AppColors.pageBackground,
                               constraints: BoxConstraints.tight(Size(300, 220)),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadiusGeometry.circular(10),
                               ),
-                              title: const Text('Delete Confirmation'),
+                              title: Text(
+                                'Delete Confirmation',
+                                style: TextStyle(color: AppColors.primaryText),
+                              ),
                               content: Text(
                                 'Are you sure you want to delete "${rule.category}"?',
+                                style: TextStyle(
+                                  color: AppColors.secondaryText,
+                                ),
                               ),
                               actions: [
                                 CustomButton(

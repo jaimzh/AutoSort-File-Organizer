@@ -56,22 +56,30 @@ class _AddExceptionDialogState extends State<AddExceptionDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.pageBackground,
+
       constraints: BoxConstraints.tight(Size(500, 230)),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(10),
       ),
       title: Text(
         "Add New Exception",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppColors.primaryText,
+        ),
       ),
       content: Form(
         key: _formKey,
         child: TextFormField(
+          style: TextStyle(color: AppColors.primaryText),
           autofocus: true,
           controller: _extensionsController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: "Exceptions",
+            labelStyle: TextStyle(color: AppColors.secondaryText),
             hintText: "e.g. .tmp, .crd, .zip",
+            hintStyle: TextStyle(color: AppColors.secondaryText),
           ),
           validator: (value) => value == null || value.isEmpty
               ? "Enter at least one extension"

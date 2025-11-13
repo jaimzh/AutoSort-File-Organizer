@@ -5,6 +5,7 @@ class AppColors {
   static late Color primaryText;
   static late Color secondaryText;
   static late Color pill;
+  static late Color barrierColor; 
 
   //card colors
   static late Color cardBackground;
