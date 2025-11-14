@@ -56,7 +56,7 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.pageBackground,
-      constraints: BoxConstraints.tight(Size(400, 300)),
+      constraints: BoxConstraints(maxWidth: 400, minHeight: 300, minWidth: 400),
 
       shape: RoundedRectangleBorder(
         side: BorderSide(color: AppColors.cardBorder, width: 1),
@@ -69,43 +69,47 @@ class _AddRuleDialogState extends State<AddRuleDialog> {
           color: AppColors.primaryText,
         ),
       ),
-      content: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              cursorColor: AppColors.primaryText,
-              controller: _categoryController,
-              style: TextStyle(color: AppColors.primaryText),
 
-              decoration: InputDecoration(
-                labelText: "Category",
-                labelStyle: TextStyle(color: AppColors.secondaryText),
-                hintText: "e.g. Documents",
-                hintStyle: TextStyle(color: AppColors.secondaryText),
-              ),
-              validator: (value) =>
-                  value == null || value.isEmpty ? "Enter a category" : null,
-            ),
-            const SizedBox(height: 10),
+      content: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                cursorColor: AppColors.primaryText,
+                controller: _categoryController,
+                style: TextStyle(color: AppColors.primaryText),
 
-            // Extensions input
-            TextFormField(
-              controller: _extensionsController,
-              cursorColor: AppColors.primaryText,
-              style: TextStyle(color: AppColors.primaryText),
-              decoration: InputDecoration(
-                labelText: "Extensions",
-                labelStyle: TextStyle(color: AppColors.secondaryText),
-                hintText: "e.g. .pdf, .docx, .txt",
-                hintStyle: TextStyle(color: AppColors.secondaryText),
+                decoration: InputDecoration(
+                  labelText: "Category",
+
+                  labelStyle: TextStyle(color: AppColors.secondaryText),
+                  hintText: "e.g. Documents",
+                  hintStyle: TextStyle(color: AppColors.secondaryText),
+                ),
+                validator: (value) =>
+                    value == null || value.isEmpty ? "Enter a category" : null,
               ),
-              validator: (value) => value == null || value.isEmpty
-                  ? "Enter at least one extension"
-                  : null,
-            ),
-          ],
+              const SizedBox(height: 10),
+
+              // Extensions input
+              TextFormField(
+                controller: _extensionsController,
+                cursorColor: AppColors.primaryText,
+                style: TextStyle(color: AppColors.primaryText),
+                decoration: InputDecoration(
+                  labelText: "Extensions",
+                  labelStyle: TextStyle(color: AppColors.secondaryText),
+                  hintText: "e.g. .pdf, .docx, .txt",
+                  hintStyle: TextStyle(color: AppColors.secondaryText),
+                ),
+                validator: (value) => value == null || value.isEmpty
+                    ? "Enter at least one extension"
+                    : null,
+              ),
+            ],
+          ),
         ),
       ),
 
