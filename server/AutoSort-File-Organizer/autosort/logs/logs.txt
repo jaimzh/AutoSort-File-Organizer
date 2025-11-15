@@ -620,3 +620,4 @@
 {"type": "monitor", "action": "started", "message": "Monitor started: watching C:\\Users\\Jaimz\\Downloads\\testfolder folder", "status": "success", "file": null, "timestamp": "2025-11-15T03:50:25.215844"}
 {"type": "monitor", "action": "stopped", "message": "Monitor stopped.", "status": "success", "file": null, "timestamp": "2025-11-15T03:50:31.555616"}
 {"type": "monitor", "action": "started", "message": "Monitor started: watching C:\\Users\\Jaimz\\Downloads\\testfolder folder", "status": "success", "file": null, "timestamp": "2025-11-15T03:50:43.814360"}
+{"type": "monitor", "action": "stopped", "message": "Monitor stopped.", "status": "success", "file": null, "timestamp": "2025-11-15T03:51:50.479891"}

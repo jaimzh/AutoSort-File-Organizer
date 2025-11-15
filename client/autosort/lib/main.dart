@@ -14,7 +14,7 @@ Future<void> main() async {
   await windowManager.ensureInitialized();
 
   const windowOptions = WindowOptions(
-    size: Size(1100, 750), // Default startup size
+    size: Size(1200, 800), // Default startup size
     center: true,
     backgroundColor: Colors.black,
     title: 'AutoSort',
@@ -28,11 +28,11 @@ Future<void> main() async {
 
   // Use bitsdojo to enforce min/max size
   doWhenWindowReady(() {
-    appWindow.minSize = const Size(1100, 750); // Minimum size
+    appWindow.minSize = const Size(1200, 800); // Minimum size
     appWindow.maxSize = const Size(1400, 900); // Maximum size
     appWindow.alignment = Alignment.center; // Start centered
   });
-//THIS IS JUST TO ENSURE THAT THE COLORS GET PICKED FROM THE BE BEFORE IT LOADS 
+  //THIS IS JUST TO ENSURE THAT THE COLORS GET PICKED FROM THE BE BEFORE IT LOADS
   // Load dark mode from backend or default
   bool isDark = false;
   try {
