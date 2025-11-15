@@ -13,11 +13,46 @@ class MonitorCard extends StatefulWidget {
 
 class _MonitorCardState extends State<MonitorCard> {
   void toggleMonitoring() async {
-    if (ApiService.isMonitoring) {
+    final wasMonitoring = ApiService.isMonitoring;
+
+    if (wasMonitoring) {
       await ApiService.stopMonitor();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text(
+            'Live Monitoring stopped.',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red.shade400,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          margin: const EdgeInsets.all(16),
+          duration: const Duration(seconds: 3),
+        ),
+      );
     } else {
       await ApiService.startMonitor();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text(
+            'Live Monitoring started.',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: AppColors.primaryBackground, // AutoSort theme
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          margin: const EdgeInsets.all(16),
+          duration: const Duration(seconds: 3),
+        ),
+      );
     }
+
     setState(() {});
   }
 

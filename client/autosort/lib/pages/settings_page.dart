@@ -148,9 +148,17 @@ class _SettingsPageState extends State<SettingsPage> {
 
                         if (dialogContext.mounted) {
                           ScaffoldMessenger.of(dialogContext).showSnackBar(
-                            const SnackBar(
+                            SnackBar(
                               content: Text(
-                                "✅ Configuration reset to defaults",
+                                "Configuration reset to defaults",
+                                style: TextStyle(color: AppColors.primaryText),
+                              ),
+                              backgroundColor: AppColors.primaryBackground,
+                              behavior: SnackBarBehavior.floating,
+                              margin: const EdgeInsets.all(16),
+                              duration: const Duration(seconds: 3),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
                               ),
                             ),
                           );
@@ -185,7 +193,10 @@ class _SettingsPageState extends State<SettingsPage> {
             onPressed: () => Navigator.pop(dialogContext),
           ),
           ElevatedButton(
-            child: const Text('Save'),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(Colors.black),
+            ),
+            child: const Text('Save', style: TextStyle(color: Colors.white)),
             onPressed: () async {
               try {
                 final updated = jsonDecode(controller.text);
@@ -201,20 +212,32 @@ class _SettingsPageState extends State<SettingsPage> {
                   ScaffoldMessenger.of(dialogContext).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "✅ Configuration updated successfully!",
+                        " Configuration updated successfully!",
                         style: TextStyle(color: AppColors.primaryText),
                       ),
                       backgroundColor: AppColors.primaryBackground,
+                      behavior: SnackBarBehavior.floating,
+                      margin: const EdgeInsets.all(16),
+                      duration: const Duration(seconds: 3),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   );
                 } else {
                   ScaffoldMessenger.of(dialogContext).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "❌ Failed to update config on backend",
+                        " Failed to update config on backend",
                         style: TextStyle(color: AppColors.primaryText),
                       ),
                       backgroundColor: AppColors.primaryBackground,
+                      behavior: SnackBarBehavior.floating,
+                      margin: const EdgeInsets.all(16),
+                      duration: const Duration(seconds: 3),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   );
                 }

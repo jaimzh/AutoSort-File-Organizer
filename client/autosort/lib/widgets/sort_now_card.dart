@@ -13,7 +13,6 @@ class ScanCard extends StatefulWidget {
 
 class _ScanCardState extends State<ScanCard> {
   bool isScanning = false;
-  bool isScanComplete = false;
 
   void toggleScanning() async {
     if (!isScanning) {
@@ -27,8 +26,23 @@ class _ScanCardState extends State<ScanCard> {
         if (mounted) {
           setState(() {
             isScanning = false;
-            isScanComplete = true;
           });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Scan complete! Files are organized.',
+                style: TextStyle(color: AppColors.primaryText),
+              ),
+              backgroundColor: AppColors.primaryBackground,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: const EdgeInsets.all(16),
+              duration: const Duration(seconds: 3),
+            ),
+          );
         }
       }
     } else {
@@ -46,7 +60,6 @@ class _ScanCardState extends State<ScanCard> {
         title: 'One-Time Sort',
         text: 'Instantly scan and organize files.',
         icon: LucideIcons.sparkles,
-
         buttonText: isScanning ? "Stop Scan" : "Scan Now",
         buttonColor: isScanning ? Colors.red : AppColors.buttonBackground,
         hoverButtonColor: isScanning
