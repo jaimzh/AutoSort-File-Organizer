@@ -102,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
           // Dynamic file count cards
           SizedBox(
-            height: 140, // must be >= FileCountCard height
+            height: 140, 
             child: _counts.isEmpty
                 ? const Center(child: CircularProgressIndicator())
                 : Scrollbar(
@@ -122,7 +122,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         final key = orderedKeys[index];
                         final value = _counts[key] ?? 0;
 
-                        // Map icons dynamically
+                    
                         IconData icon;
                         switch (key.toLowerCase()) {
                           case "videos":
@@ -179,7 +179,7 @@ class DashboardCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(20), // ✅ same as FileConfigCard
+        padding: const EdgeInsets.all(20), 
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           border: Border.all(color: AppColors.cardBorder, width: 0.5),
@@ -208,7 +208,7 @@ class DashboardCard extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-                //hook up the button here
+               
                 IconButton(
                   iconSize: 20,
                   color: AppColors.iconColor,
@@ -262,8 +262,7 @@ class DashboardCard extends StatelessWidget {
                             ),
                           ),
                         );
-                        // 🔥 Force refresh after reset
-                        // Call parent dashboard’s reload method
+                       
                         final state = context
                             .findAncestorStateOfType<_DashboardPageState>();
                         state?._loadCounts();
@@ -281,7 +280,7 @@ class DashboardCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Expanded(child: content), // ✅ content area stays flexible
+            Expanded(child: content),
           ],
         ),
       ),
@@ -305,7 +304,7 @@ class FileCountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160, // pick what works for your layout
+      width: 160, 
       height: 140,
       child: Container(
         padding: const EdgeInsets.all(20),

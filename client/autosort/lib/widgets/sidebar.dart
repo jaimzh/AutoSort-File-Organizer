@@ -28,7 +28,7 @@ class _SidebarState extends State<Sidebar> {
     _items = [
       CollapsibleItem(
         text: 'AutoSort',
-        // icon: LucideIcons.house,
+        // icon: custom icon
         icon: MyFlutterApp.union,
         onPressed: () => widget.onItemSelected(const AutosortPage()),
         isSelected: true,
@@ -71,7 +71,7 @@ class _SidebarState extends State<Sidebar> {
 
       body: Container(),
 
-      // leave empty ✅
+
       itemPadding: 15,
       screenPadding: 8,
       showTitle: false,
