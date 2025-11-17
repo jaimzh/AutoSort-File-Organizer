@@ -2,50 +2,54 @@
 
 # 🧠 **AutoSort — The Neat Freak Your Computer Needs (A Smart Desktop Utility App)**
 
+[](https://www.google.com/search?q=https://github.com/YOUR_USERNAME/autosort)
+[](https://www.google.com/search?q=LICENSE)
+[](https://www.google.com/search?q=https://github.com/YOUR_USERNAME/autosort/stargazers)
+
 AutoSort is a **full-stack desktop utility app** built to keep your computer clean, organized, and clutter-free — automatically.
 Think of it as the **neat freak your computer has always needed**. It sorts files by their file type into proper categories and keeps everything tidy with zero stress.
 
 AutoSort combines:
 
-* A modern, responsive **Flutter desktop client**
-* A fast, reliable **Python backend**
-* Real-time monitoring and intelligent file organization
+  * A modern, responsive **Flutter desktop client**
+  * A fast, reliable **Python backend (FastAPI)**
+  * Real-time monitoring and intelligent file organization
 
 Its mission is simple:
 **Bring structure to digital chaos — with speed, safety, and style.**
 
----
+-----
 
-## 🚀 Features
+## 🚀 Key Features
 
-### 🗂 Smart File Organization
+### 🗂 **Intelligent File Organization & Control**
 
-* Automatically sorts files by type, extension, or custom logic
-* Detects duplicates with merge/unmerge controls
-* Safe file operations: copy → verify → finalize
-* Flexible categories: Documents, Media, Code, Archives, etc.
+  * **Rule Engine:** Define custom rules to organize files by category and file extension.
+  * **Exception Handling:** Specify file extensions that AutoSort should explicitly ignore.
+  * **Duplicate Management:** Configure the service to either **Merge** duplicates or keep them **Separate**.
+  * **Atomic Operations:** Ensures files are moved/copied correctly before deletion/finalization, with customizable processing delays.
+  * **Modes of Operation:** Easily switch between **Manual "Sort Now"** mode and **Automated "Monitor"** mode for real-time changes.
 
-### 📊 Real-Time Monitoring
+### 📊 **Real-Time Monitoring & Visibility**
 
-* Live file count by category
-* Dashboard refresh & status indicators
-* Change detection as files are added/removed
+  * **Live Dashboard:** View real-time file counts organized by category (Documents, Videos, Images, Audio, Archives, etc.).
+  * **Comprehensive Activity Logs:** Review all historical operations (sorts, scans, errors) with filtering by **All Logs**, **Errors**, **Scans**, or **Monitor** activity.
+  * **API Health Status:** Includes a splash screen that checks the backend API health before loading the main application.
 
-### 🖥 Clean & Modern Desktop App
+### 🖥 **Modern Desktop Client**
 
-* Built with Flutter for Windows, macOS, and Linux
-* Lucide icons + custom theming
-* Snackbar notifications & smooth UX
-* Settings page ready for future appearance and behavior options
+  * Built with **Flutter** for Windows, macOS, and Linux.
+  * Dynamic, dark-themed UI using **Lucide Icons** and custom color schemes.
+  * **Advanced Config Editor:** An in-app JSON editor allows power users to directly view and update the entire backend configuration.
+  * Smooth user experience with **Snackbar Notifications** for successful operations and errors.
 
-### ⚡ Lightweight Python Backend
+-----
 
-* Directory scanning & file categorization
-* Duplicate detection & safe handling
-* Fast local REST API (Flask/FastAPI depending on your final setup)
-* Runs as a simple, dependable local service
+### 📊 Screenshots
 
----
+> **Note:** Screenshots coming soon\! For now, see the `client/` directory for UI layouts.
+
+-----
 
 ## 🏗 Project Structure
 
@@ -53,42 +57,42 @@ Its mission is simple:
 AUTOSORT/
 │
 ├── client/
-│   └── autosort/                # Flutter desktop utility app
-│       ├── lib/                 # UI, pages, widgets, services
-│       ├── assets/              # Images, icons, fonts
-│       ├── windows/ linux/ macos/
-│       ├── pubspec.yaml
-│       └── README.md            # (to be added later)
+│   └── autosort/                # Flutter desktop utility app
+│       ├── lib/                 # UI, pages, widgets, services
+│       ├── assets/              # Images, icons, fonts
+│       ├── windows/ linux/ macos/
+│       ├── pubspec.yaml
+│       └── README.md            # (to be added later)
 │
 ├── server/
-│   └── AutoSort-File-Organizer/ # Python backend
-│       ├── src/ or modules/     # File organization logic
-│       ├── main.py              # API entry point
-│       └── README.md            # (to be added later)
+│   └── AutoSort-File-Organizer/ # Python backend
+│       ├── src/ or modules/     # File organization logic
+│       ├── main.py              # API entry point
+│       └── README.md            # (to be added later)
 │
-└── README.md                    # Root overview (this file)
+└── README.md                    # Root overview (this file)
 ```
 
----
+-----
 
 ## 🔧 Tech Stack
 
 ### **Frontend (Utility App)**
 
-* Flutter
-* Dart
-* Lucide Icons
-* Custom theme
-* REST API client
+  * **Flutter**
+  * **Dart**
+  * **Lucide Icons**
+  * **Provider** (State Management)
+  * **`code_text_field`** (For JSON Editor)
 
 ### **Backend (Organizer Service)**
 
-* Python
-* FastAPI 
-* OS-level file operations
-* Directory scanning & duplicate detection
+  * **Python 3.x**
+  * **FastAPI** (Local REST API)
+  * **`pathlib` / `os`** (File System Operations)
+  * **Hashing Library (e.g., `hashlib`):** For duplicate detection & file verification.
 
----
+-----
 
 ## 📦 Installation & Setup
 
@@ -101,7 +105,13 @@ cd autosort
 
 ### 2️⃣ Start the backend (Python)
 
+> **It is highly recommended to use a Python virtual environment\!**
+
 ```bash
+# Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows, use: .venv\Scripts\activate
+
 cd server/AutoSort-File-Organizer
 pip install -r requirements.txt
 python main.py
@@ -112,64 +122,54 @@ python main.py
 ```bash
 cd client/autosort
 flutter pub get
-flutter run -d windows   # or macos, linux
+# Use the flag corresponding to your operating system:
+flutter run -d windows   # or -d macos, -d linux
 ```
 
----
+-----
 
 ## 💡 How AutoSort Works
 
-1. The Python backend scans your target folders
-2. It categorizes files into predefined types
-3. AutoSort performs safe operations (copy → verify → replace)
-4. The Flutter client displays live stats, categories, and actions
-5. You control operations such as:
-
-   * Sort Files
-   * Reset Directory
-   * Merge/Unmerge Duplicates
-   * Refresh Counts
-   * Monitor file changes
+1.  The Python backend scans your target folders
+2.  It categorizes files based on configured **Rules**
+3.  AutoSort performs safe, **atomic operations** (copy → verify → replace)
+4.  The Flutter client displays live stats, categories, and actions
+5.  You control operations such as:
+      * Sort Files (Manual Trigger)
+      * Monitor File Changes (Automated)
+      * Manage **Rules** and **Exceptions**
+      * **Merge/Keep** Duplicates
 
 AutoSort stays lightweight, fast, and dependable — exactly how a utility app should be.
 
----
+-----
 
-## 🗺 Roadmap
+## 🗺 Roadmap/Todo
 
-* [ ] Custom sorting rules (patterns, extension groups)
-* [ ] Background-service mode with system tray
-* [ ] Activity logs & notifications
-* [ ] User-defined categories
-* [ ] Advanced duplicate detection
-* [ ] Plugin/add-on system
+  * [ ] Background-service mode with system tray
+  * [ ] Make an actual python library that can be installed
+  * [x] Custom sorting rules (patterns, extension groups)
+  * [x] Activity logs
+  * [x] User-defined categories
+  * [x] Advanced duplicate detection
 
----
+-----
 
 ## 🤝 Contributing
 
 Contribution guidelines will be added in v1.0.
 Pull requests are welcome once the architecture is stabilized.
 
----
+-----
 
 ## 📜 License
 
 MIT License — free for personal and commercial use.
 
----
+-----
 
 ## ⭐ Final Notes
 
 AutoSort is designed to be a **practical, everyday desktop utility** — install it once and let it silently keep your system neat, organized, and stress-free.
 
----
-
-<!-- If you want, I can:
-
-✅ Add badges
-✅ Design a banner/logo
-✅ Generate screenshots placeholders
-✅ Prepare the sub-folder READMEs (client + server)
-
-Just say the word. -->
+-----
