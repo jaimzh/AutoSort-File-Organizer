@@ -46,8 +46,7 @@ Its mission is simple:
 -----
 
 ### 📊 Screenshots
-
-> **Note:** Screenshots coming soon\! For now, see the `client/` directory for UI layouts.
+![alt text](image.png)
 
 -----
 
