@@ -43,7 +43,7 @@ Its mission is simple:
 
 -----
 
-### 📊 Screenshots
+### 📊 Screenshot
 
 ![AutoSort Page Screenshot](client/autosort/assets/screenshots/image.png)
 -----
