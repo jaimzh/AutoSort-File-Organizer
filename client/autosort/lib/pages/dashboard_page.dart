@@ -100,7 +100,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           const SizedBox(height: 20),
 
-          // Dynamic file count cards
+          
           SizedBox(
             height: 140, 
             child: _counts.isEmpty
