@@ -1,6 +1,6 @@
 {
-  "source_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
-  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\testfolder",
+  "source_folder": "C:\\Users\\Jaimz\\Downloads\\Telegram Desktop",
+  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\Telegram Desktop",
   "rules": {
     "Videos": [
       ".mp4",
@@ -46,7 +46,7 @@
   ],
   "wait_before_copy": 1,
   "verify_delay": 2,
-  "mode": "safe",
+  "mode": "fast",
   "merge_duplicates": false,
   "dark_mode": false
 }
