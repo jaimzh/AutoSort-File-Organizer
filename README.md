@@ -1,5 +1,3 @@
-
-
 # 🧠 **AutoSort — The Neat Freak Your Computer Needs (A Smart Desktop Utility App)**
 
 [](https://www.google.com/search?q=https://github.com/YOUR_USERNAME/autosort)
@@ -147,10 +145,7 @@ AutoSort stays lightweight, fast, and dependable — exactly how a utility app s
 
   * [ ] Background-service mode with system tray
   * [ ] Make an actual python library that can be installed
-  * [x] Custom sorting rules (patterns, extension groups)
-  * [x] Activity logs
-  * [x] User-defined categories
-  * [x] Advanced duplicate detection
+
 
 -----
 
