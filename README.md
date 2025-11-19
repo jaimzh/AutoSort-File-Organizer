@@ -44,7 +44,8 @@ Its mission is simple:
 -----
 
 ### 📊 Screenshots
-does this actuallly get updated 
+
+![AutoSort Page Screenshot](client/autosort/assets/screenshots/image.png)
 -----
 
 ## 🏗 Project Structure

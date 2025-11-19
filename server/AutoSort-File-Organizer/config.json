@@ -1,6 +1,6 @@
 {
-  "source_folder": "C:\\Users\\Jaimz\\Downloads\\Telegram Desktop",
-  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\Telegram Desktop",
+  "source_folder": "C:\\Users\\Jaimz\\Downloads",
+  "destination_folder": "C:\\Users\\Jaimz\\Downloads",
   "rules": {
     "Videos": [
       ".mp4",
