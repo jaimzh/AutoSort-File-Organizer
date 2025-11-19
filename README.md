@@ -44,8 +44,7 @@ Its mission is simple:
 -----
 
 ### 📊 Screenshots
-![alt text](image.png)
-
+does this actuallly get updated 
 -----
 
 ## 🏗 Project Structure
