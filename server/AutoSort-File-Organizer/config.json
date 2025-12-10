@@ -1,6 +1,6 @@
 {
   "source_folder": "C:\\Users\\Jaimz\\Downloads",
-  "destination_folder": "C:\\Users\\Jaimz\\Downloads",
+  "destination_folder": "C:\\Users\\Jaimz\\Downloads\\AutoSorted",
   "rules": {
     "Videos": [
       ".mp4",
@@ -35,7 +35,10 @@
       ".tar",
       ".gz"
     ],
-    "Others": []
+    "Others": [],
+    "ANIMATE FOLDER": [
+      ".FLA"
+    ]
   },
   "exceptions": [
     ".crdownload",
@@ -48,5 +51,5 @@
   "verify_delay": 2,
   "mode": "fast",
   "merge_duplicates": false,
-  "dark_mode": true
+  "dark_mode": false
 }
